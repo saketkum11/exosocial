@@ -1,15 +1,28 @@
 import { Routes, Route } from "react-router-dom";
-import { Explore, Home, Landing, Signin } from "../Page";
+import {
+  BookMark,
+  Explore,
+  Home,
+  Landing,
+  NotFound,
+  Profile,
+  Signin,
+} from "../Page";
 
 const MyRoutes = () => {
   return (
     <>
       <Routes>
         <Route path="/landing" element={<Landing />} />
-        <Route path="/" element={<Home />} />
+
+        <Route path="/home" element={<Home />} />
         <Route path="/explore" element={<Explore />} />
+        <Route path="/saved" element={<BookMark />} />
+        <Route path="/profile" element={<Profile />} />
+
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signin />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
