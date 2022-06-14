@@ -8,3 +8,4 @@ export { BookMark } from "../Page/Bookmark/BookMark";
 export { Profile } from "../Page/Profile/Profile";
 export { NotFound } from "../Page/NotFound";
 export { Header } from "../component/Header";
+export { SideBar } from "../component/SideBar";
