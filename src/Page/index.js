@@ -7,4 +7,4 @@ export { Home } from "../Page/Home/Home";
 export { BookMark } from "../Page/Bookmark/BookMark";
 export { Profile } from "../Page/Profile/Profile";
 export { NotFound } from "../Page/NotFound";
-export { NavBar } from "../component/NavBar";
+export { Header } from "../component/Header";

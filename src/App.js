@@ -1,10 +1,10 @@
 import "./App.css";
-import { MyRoutes, NavBar } from "./Page";
+import { Header, MyRoutes } from "./Page";
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <Header />
       <MyRoutes />
     </div>
   );
