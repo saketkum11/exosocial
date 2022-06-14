@@ -1,29 +1,23 @@
-import { Grid, Typography } from "@mui/material";
+import { Container, Grid, Typography } from "@mui/material";
+
+const useStyles = makes;
 
 const Landing = () => {
+  const classes = useStyles();
   return (
     <>
-      <Grid container>
-        <Grid item xs variant="">
-          <div xs={{ color: "primary" }}>
-            {" "}
-            <Typography variant="h3">ExoSocial</Typography>
-          </div>
-          <div>
-            {" "}
-            <Typography variant="h3">ExoSocial</Typography>
-          </div>
-          <div>
-            {" "}
-            <Typography variant="h3">ExoSocial</Typography>
-          </div>
+      <Container>
+        <Grid container>
+          <Grid item xs variant="">
+            <Typography>ExoSocial</Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <div>
+              <img src="./assets/social.jpg" alt="" />
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs={6}>
-          <div>
-            <img src="./assets/social.jpg" alt="" />
-          </div>
-        </Grid>
-      </Grid>
+      </Container>
     </>
   );
 };
