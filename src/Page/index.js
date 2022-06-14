@@ -8,4 +8,3 @@ export { BookMark } from "../Page/Bookmark/BookMark";
 export { Profile } from "../Page/Profile/Profile";
 export { NotFound } from "../Page/NotFound";
 export { NavBar } from "../component/NavBar";
-export { theme } from "../theme";
