@@ -1,7 +1,11 @@
+import { PostCard } from "./PostCard";
+
 const Card = () => {
   return (
     <>
-      <section></section>
+      <section>
+        <PostCard />
+      </section>
     </>
   );
 };
