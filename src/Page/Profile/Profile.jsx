@@ -1,7 +1,11 @@
 const Profile = () => {
   return (
     <>
-      <h1>This is Profile page.</h1>
+      <main className="grid grid-cols-12 gap-4 mt-3">
+        <SideBar />
+        <Card />
+        <Follow />
+      </main>
     </>
   );
 };
