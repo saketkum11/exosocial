@@ -4,10 +4,8 @@ const SideBar = () => {
       <aside className="col-start-2 col-end-4">
         <ul className="flex flex-col">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
-            <Link>
-              <i className="fa-solid fa-house-user mr-3 "></i>
-              <span>Home</span>
-            </Link>
+            <i className="fa-solid fa-house-user mr-3 "></i>
+            <span>Home</span>
           </li>
           <li className="p-2 py-3 flex items-center text-lg  justify-start">
             <i className="fa-solid fa-rocket mr-3"></i>
