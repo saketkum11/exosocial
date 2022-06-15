@@ -1,7 +1,7 @@
 const Follow = () => {
   return (
     <>
-      <section className="flex flex-col rounded-md bg-white w-1/5">
+      <section className="flex flex-col  col-start-10 col-end-12">
         <div className="flex justify-around border-b-2 mt-3 p-2">
           <span>Who to Follow?</span>
           <button>Show More</button>

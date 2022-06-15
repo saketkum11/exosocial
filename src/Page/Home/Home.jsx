@@ -5,9 +5,11 @@ import { SideBar } from "../../component/SideBar";
 const Home = () => {
   return (
     <>
-      <SideBar />
-      <Card />
-      <Follow />
+      <main className="grid grid-cols-12 gap-4 mt-3">
+        <SideBar />
+        <Card />
+        <Follow />
+      </main>
     </>
   );
 };

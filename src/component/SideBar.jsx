@@ -1,7 +1,7 @@
 const SideBar = () => {
   return (
     <>
-      <aside className="w-1/5  bg-white rounded-md">
+      <aside className="    col-start-2 col-end-4">
         <ul className="flex flex-col  ">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
             <i className="fa-solid fa-house-user mr-3 "></i>
