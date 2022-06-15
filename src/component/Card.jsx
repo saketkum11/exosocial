@@ -1,3 +1,8 @@
 const Card = () => {
-  return <></>;
+  return (
+    <>
+      <section></section>
+    </>
+  );
 };
+export { Card };

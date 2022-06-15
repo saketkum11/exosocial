@@ -9,3 +9,6 @@ export { Profile } from "../Page/Profile/Profile";
 export { NotFound } from "../Page/NotFound";
 export { Header } from "../component/Header";
 export { SideBar } from "../component/SideBar";
+export { Follow } from "../component/Follow";
+export { Card } from "../component/Card";
+export { PostCard } from "../component/PostCard";
