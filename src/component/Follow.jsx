@@ -1,7 +1,7 @@
 const Follow = () => {
   return (
     <>
-      <section className="flex flex-col  col-start-10 col-end-12">
+      <section className="flex flex-col  col-start-10 col-end-12 ">
         <div className="flex justify-around border-b-2 mt-3 p-2">
           <span>Who to Follow?</span>
           <button>Show More</button>
@@ -12,7 +12,7 @@ const Follow = () => {
             <div className="flex grow items-center">
               <img
                 src="./assets/social.jpg"
-                className="rounded-full w-8 h-8 mr-3 "
+                className="rounded-full w-8 h-8 mr-3 object-cover "
                 alt=""
               />
               <div className="flex flex-col ">
@@ -27,7 +27,7 @@ const Follow = () => {
             <div className="flex grow items-center">
               <img
                 src="./assets/social.jpg"
-                className="rounded-full w-8 h-8 mr-3 "
+                className="rounded-full w-8 h-8 mr-3 object-cover"
                 alt=""
               />
               <div className="flex flex-col ">

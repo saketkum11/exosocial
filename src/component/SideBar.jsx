@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const SideBar = () => {
   return (
     <>
-      <aside className="col-start-2 col-end-4">
+      <aside className="col-start-2 col-end-4 ">
         <ul className="flex flex-col">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
             <Link to="/home">

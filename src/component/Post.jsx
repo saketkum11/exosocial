@@ -4,11 +4,11 @@ const Post = () => {
       <section className="bg-white  flex p-4">
         <img
           src="./assets/social.jpg"
-          className="rounded-full w-10 h-10 mr-2 "
+          className="rounded-full w-10 h-10  "
           alt=""
         />
 
-        <div className="flex flex-col w-full">
+        <div className="flex flex-col w-full ">
           <input
             placeholder="start your post..."
             className=" h-20 bg-gray-100 px-2 "
