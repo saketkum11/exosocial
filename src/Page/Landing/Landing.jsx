@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Signup } from "../Auth/Signup";
 
 const Landing = () => {
@@ -5,7 +6,9 @@ const Landing = () => {
     <>
       <main className="grid grid-cols-12 grid-rows-6 container ">
         <section className="col-start-3 col-end-6 row-start-3 row-end-6 content-start">
-          <span className="text-3xl font-bold text-indigo-800">ExoSocial</span>
+          <span className="text-3xl font-bold text-indigo-800">
+            <Link to="/home">ExoSocial</Link>
+          </span>
           <div className="flex flex-col  mt-3">
             <span className=" text-indigo-800">
               FOLLOW<small>PEOPLE AROUND THE GLOBE</small>

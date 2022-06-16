@@ -15,7 +15,7 @@ const MyRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="/landing" element={<Landing />} />
+        <Route path="/" element={<Landing />} />
         <Route element={<HomeOutlet />}>
           <Route path="/home" element={<Home />} />
           <Route path="/explore" element={<Explore />} />
