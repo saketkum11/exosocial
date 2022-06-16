@@ -1,7 +1,9 @@
+import { PostCard } from "../../component/PostCard";
+
 const BookMark = () => {
   return (
     <>
-      <h1>This is BookMark page.</h1>
+      <PostCard />
     </>
   );
 };

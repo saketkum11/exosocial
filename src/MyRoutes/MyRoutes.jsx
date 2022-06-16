@@ -8,6 +8,7 @@ import {
   NotFound,
   Profile,
   Signin,
+  Signup,
 } from "../Page";
 
 const MyRoutes = () => {
@@ -22,7 +23,7 @@ const MyRoutes = () => {
           <Route path="/profile" element={<Profile />} />
         </Route>
         <Route path="/signin" element={<Signin />} />
-        <Route path="/signup" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

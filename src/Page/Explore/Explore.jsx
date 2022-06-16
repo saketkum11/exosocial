@@ -1,7 +1,16 @@
+import { ExploreTab } from "../../component/ExploreTab";
+import { PostCard } from "../../component/PostCard";
+
 const Explore = () => {
   return (
     <>
-      <h1 className="">This is Expolore page.</h1>
+      <div className="col-start-4 col-end-10 ">
+        <div className=" px-3 text-left text-lg font-bold">
+          <span>Explore</span>
+        </div>
+        <ExploreTab />
+        <PostCard />
+      </div>
     </>
   );
 };

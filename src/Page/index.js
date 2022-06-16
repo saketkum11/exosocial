@@ -14,3 +14,5 @@ export { Card } from "../component/Card";
 export { PostCard } from "../component/PostCard";
 export { HomeOutlet } from "../Page/HomeOutlet";
 export { UserProfile } from "../component/UserProfile";
+export { ExploreTab } from "../component/ExploreTab";
+export { Post } from "../component/Post";

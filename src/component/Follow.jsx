@@ -8,7 +8,7 @@ const Follow = () => {
         </div>
 
         <ul className="flex w-full  flex-col flex-wrap p-5 ">
-          <li className="flex   items-center my-1 ">
+          <li className="flex  items-center justify-evenly my-1 ">
             <div className="flex grow items-center">
               <img
                 src="./assets/social.jpg"
@@ -21,9 +21,9 @@ const Follow = () => {
               </div>
             </div>
 
-            <button className="">Follow</button>
+            <button>Follow</button>
           </li>
-          <li className="flex   items-center ">
+          <li className="flex   items-center justify-evenly ">
             <div className="flex grow items-center">
               <img
                 src="./assets/social.jpg"

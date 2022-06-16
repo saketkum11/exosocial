@@ -1,9 +1,13 @@
 import { Card } from "../../component/Card";
+import { Post } from "../../component/Post";
 
 const Home = () => {
   return (
     <>
-      <Card />
+      <div className="col-start-4 col-end-10">
+        <Post />
+        <Card />
+      </div>
     </>
   );
 };
