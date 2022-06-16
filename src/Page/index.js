@@ -12,3 +12,5 @@ export { SideBar } from "../component/SideBar";
 export { Follow } from "../component/Follow";
 export { Card } from "../component/Card";
 export { PostCard } from "../component/PostCard";
+export { HomeOutlet } from "../Page/HomeOutlet";
+export { UserProfile } from "../component/UserProfile";

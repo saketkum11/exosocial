@@ -3,6 +3,7 @@ import {
   BookMark,
   Explore,
   Home,
+  HomeOutlet,
   Landing,
   NotFound,
   Profile,
@@ -14,12 +15,12 @@ const MyRoutes = () => {
     <>
       <Routes>
         <Route path="/landing" element={<Landing />} />
-
-        <Route path="/home" element={<Home />} />
-        <Route path="/explore" element={<Explore />} />
-        <Route path="/saved" element={<BookMark />} />
-        <Route path="/profile" element={<Profile />} />
-
+        <Route element={<HomeOutlet />}>
+          <Route path="/home" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
+          <Route path="/saved" element={<BookMark />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
         <Route path="/signin" element={<Signin />} />
         <Route path="/signup" element={<Signin />} />
         <Route path="*" element={<NotFound />} />
