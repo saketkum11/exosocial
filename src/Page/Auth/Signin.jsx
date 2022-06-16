@@ -5,7 +5,7 @@ const Signin = () => {
     <>
       <section className="grid grid-cols-12 ">
         <div className="col-start-5 col-end-8  my-3 bg-white p-4">
-          <form action="" className="">
+          <form>
             <div>
               <span className="text-2xl text-indigo-800 font-bold">SignUp</span>
             </div>
@@ -35,7 +35,7 @@ const Signin = () => {
             </button>
           </form>
           <div>
-            <Link to="/signup">Don't Have Account ?</Link>
+            <Link to="/">Don't Have Account ?</Link>
           </div>
         </div>
       </section>

@@ -4,7 +4,7 @@ const Signup = () => {
   return (
     <>
       <div className="p-4 bg-white ">
-        <form action="" className="">
+        <form>
           <div>
             <span className="text-2xl text-indigo-800 font-bold">SignUp</span>
           </div>
@@ -53,7 +53,7 @@ const Signup = () => {
           </button>
         </form>
         <div>
-          <Link to="/signin">Already Have account ?</Link>
+          <Link to="/">Already Have account ?</Link>
         </div>
       </div>
     </>

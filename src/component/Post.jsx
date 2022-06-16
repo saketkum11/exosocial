@@ -12,7 +12,7 @@ const Post = () => {
           <input
             placeholder="start your post..."
             className=" h-20 bg-gray-100 px-2 "
-          ></input>
+          />
           <div className="flex justify-between ">
             <div className="flex">
               <button className="mr-1">
