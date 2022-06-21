@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { signUpUser } from "../../features/posts/postSlice";
+import { signUpUser } from "../../features/auth/authSlice";
 
 const Signup = () => {
   const dispatch = useDispatch();
@@ -98,7 +98,7 @@ const Signup = () => {
           </button>
         </form>
         <div>
-          <Link to="/">Already Have account ?</Link>
+          <Link to="/signin">Already Have account ?</Link>
         </div>
       </div>
     </>
