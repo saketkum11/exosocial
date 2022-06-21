@@ -14,7 +14,7 @@ const Signup = () => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
   };
 
-  log(userCredential, selector);
+  log(userCredential);
   return (
     <>
       <div className="p-4 bg-white ">
