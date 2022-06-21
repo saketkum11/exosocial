@@ -1,10 +1,28 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+  const [userCredential, setUserCredential] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+  });
+
+  const log = console.log;
+  const handleEvent = (e) => {
+    setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
+  };
+
+  log(userCredential, selector);
   return (
     <>
       <div className="p-4 bg-white ">
-        <form>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
           <div>
             <span className="text-2xl text-indigo-800 font-bold">SignUp</span>
           </div>
@@ -13,7 +31,11 @@ const Signup = () => {
               FirstName
             </label>
             <input
+              onChange={(e) => handleEvent(e)}
               type="text"
+              name="firstName"
+              required
+              value={userCredential.firstName}
               placeholder="eg.Adam Josh"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
@@ -23,7 +45,11 @@ const Signup = () => {
               LastName
             </label>
             <input
+              onChange={(e) => handleEvent(e)}
               type="text"
+              name="lastName"
+              required
+              value={userCredential.lastName}
               placeholder="eg.Adam Josh"
               className=" border-indigo-800 border-2  p-2 rounded-md border-opacity-50"
             />
@@ -33,7 +59,11 @@ const Signup = () => {
               Email
             </label>
             <input
+              onChange={(e) => handleEvent(e)}
               type="email"
+              name="email"
+              required
+              value={userCredential.email}
               placeholder="eg.adam@gmail.com"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
@@ -43,12 +73,19 @@ const Signup = () => {
               Password
             </label>
             <input
+              onChange={(e) => handleEvent(e)}
               type="password"
+              required
+              name="password"
+              value={userCredential.password}
               placeholder="eg.adgj180019"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
           </div>
-          <button className="w-full p-1 flex justify-center bg-indigo-800 text-white text-lg items-center my-5">
+          <button
+            type="submit"
+            className="w-full p-1 flex justify-center bg-indigo-800 text-white text-lg items-center my-5"
+          >
             Create Account
           </button>
         </form>
