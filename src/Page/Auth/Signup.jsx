@@ -1,7 +1,10 @@
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { signUpUser } from "../../features/posts/postSlice";
 
 const Signup = () => {
+  const dispatch = useDispatch();
   const [userCredential, setUserCredential] = useState({
     firstName: "",
     lastName: "",
@@ -14,6 +17,10 @@ const Signup = () => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
   };
 
+  const handleSignUp = () => {
+    dispatch(signUpUser(userCredential));
+  };
+
   log(userCredential);
   return (
     <>
@@ -21,6 +28,7 @@ const Signup = () => {
         <form
           onSubmit={(e) => {
             e.preventDefault();
+            handleSignUp();
           }}
         >
           <div>
