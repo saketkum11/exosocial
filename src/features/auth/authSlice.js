@@ -1,33 +1,30 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const tokenState = {
-  token: localStorage.getItem("token"),
-  isAuth: localStorage.getItem("token") ? true : false,
-};
+const user = JSON.parse(localStorage.getItem("user"));
 
-console.log(tokenState);
 const initialState = {
   message: "",
-  error: false,
-  loader: false,
-  success: false,
+  isError: false,
+  isLoader: false,
+  isSuccess: false,
+  isAuth: false,
+  user: user ? user : null,
 };
 
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
-  async ({ email, password, firtName, lastName }) => {
+  async ({ email, password, firstName, lastName }) => {
     try {
       const response = await axios.post("/api/auth/signup", {
-        email,
-        password,
-        firtName,
-        lastName,
+        username: email,
+        password: password,
+        firstname: firstName,
+        lastname: lastName,
       });
-      console.log("response from auth slice", response);
-      localStorage.setItem("token", response.data.encodedToken);
+      console.log("from signup user", response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 );
@@ -37,11 +34,10 @@ export const signInUser = createAsyncThunk(
   async ({ email, password }) => {
     try {
       const response = await axios.post("/api/auth/login", {
-        email,
-        password,
+        username: email,
+        password: password,
       });
-      console.log("from signin", response);
-      localStorage.setItem("token", response.data.encodedToken);
+      console.log("from signin user", response);
     } catch (error) {
       console.error(error);
     }
@@ -51,8 +47,39 @@ export const signInUser = createAsyncThunk(
 const authSlice = createSlice({
   name: "auth",
   initialState,
-  reducers: {},
-  extraReducers: {},
+  reducers: {
+    reset: (state) => {
+      state.error = false;
+      state.isLoader = false;
+      state.isSuccess = false;
+      state.message = "";
+    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signUpUser.pending, (state) => {
+        state.isLoader = true;
+      })
+      .addCase(signUpUser.fulfilled, (state, action) => {
+        state.isLoader = false;
+        state.isSuccess = true;
+        state.user = action.payload.encodedToken;
+        localStorage.setItem("user", JSON.stringify(state.user));
+      })
+      .addCase(signUpUser.rejected, (state) => {})
+      .addCase(signInUser.pending, (state) => {
+        state.isLoader = true;
+      })
+      .addCase(signInUser.fulfilled, (state, action) => {
+        state.isLoader = false;
+        state.isSuccess = true;
+        state.user = action.payload.data.encodedToken;
+
+        localStorage.setItem("user", state.user);
+        // localStorage.setItem("user", JSON.stringify(state.user));
+      });
+  },
 });
 
+export const { reset } = authSlice.actions;
 export default authSlice.reducer;

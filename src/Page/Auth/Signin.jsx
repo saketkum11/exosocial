@@ -5,12 +5,20 @@ import { signInUser } from "../../features/auth/authSlice";
 
 const Signin = () => {
   const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
 
-  const handleForm = (e) => {
+  const { email, password } = formData;
+
+  const defaultUser = {
+    email: "saket601@gmail.com",
+    password: "saket123",
+  };
+
+  const handleEvent = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -18,10 +26,8 @@ const Signin = () => {
     dispatch(signInUser(formData));
   };
 
-  const { email, password } = formData;
-
   const handleGuess = () => {
-    dispatch(signInUser("saket601@gmail.com", "saket123"));
+    dispatch(signInUser(defaultUser));
   };
   return (
     <>
@@ -42,7 +48,7 @@ const Signin = () => {
                 Email
               </label>
               <input
-                onChange={(e) => handleForm(e)}
+                onChange={(e) => handleEvent(e)}
                 type="email"
                 name="email"
                 required
@@ -56,7 +62,7 @@ const Signin = () => {
                 Password
               </label>
               <input
-                onChange={(e) => handleForm(e)}
+                onChange={(e) => handleEvent(e)}
                 type="password"
                 required
                 name="password"
@@ -67,7 +73,7 @@ const Signin = () => {
             </div>
             <button
               type="submit"
-              className="w-full p-1 flex justify-center bg-indigo-800 text-white text-lg items-center my-5"
+              className="w-full p-1 flex justify-center rounded-md bg-indigo-800 text-white text-lg items-center my-5"
             >
               Login
             </button>
@@ -75,7 +81,7 @@ const Signin = () => {
           <div>
             <button
               onClick={handleGuess}
-              className="w-full p-1 flex justify-center bg-indigo-800 text-white text-lg items-center my-5"
+              className="w-full p-1 flex justify-center rounded-md border-gray-300  border-2 text-gray-400 text-lg items-center my-5"
             >
               Login as guess
             </button>
