@@ -12,6 +12,8 @@ const Signup = () => {
     password: "",
   });
 
+  const { firstName, lastName, email, password } = userCredential;
+
   const log = console.log;
   const handleEvent = (e) => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
@@ -43,7 +45,7 @@ const Signup = () => {
               type="text"
               name="firstName"
               required
-              value={userCredential.firstName}
+              value={firstName}
               placeholder="eg.Adam Josh"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
@@ -57,7 +59,7 @@ const Signup = () => {
               type="text"
               name="lastName"
               required
-              value={userCredential.lastName}
+              value={lastName}
               placeholder="eg.Adam Josh"
               className=" border-indigo-800 border-2  p-2 rounded-md border-opacity-50"
             />
@@ -71,7 +73,7 @@ const Signup = () => {
               type="email"
               name="email"
               required
-              value={userCredential.email}
+              value={email}
               placeholder="eg.adam@gmail.com"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
@@ -85,7 +87,7 @@ const Signup = () => {
               type="password"
               required
               name="password"
-              value={userCredential.password}
+              value={password}
               placeholder="eg.adgj180019"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
@@ -98,7 +100,7 @@ const Signup = () => {
           </button>
         </form>
         <div>
-          <Link to="/signin">Already Have account ?</Link>
+          <Link to="/login">Already Have account ?</Link>
         </div>
       </div>
     </>

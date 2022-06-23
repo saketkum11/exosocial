@@ -1,20 +1,19 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const user = JSON.parse(localStorage.getItem("user"));
-
 const initialState = {
   message: "",
   isError: false,
   isLoader: false,
   isSuccess: false,
-  isAuth: false,
-  user: user ? user : null,
+  isAuth: localStorage.getItem("token") ? true : false,
+  user: localStorage.getItem("user"),
+  token: localStorage.getItem("token"),
 };
 
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
-  async ({ email, password, firstName, lastName }) => {
+  async ({ email, password, firstName, lastName }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/signup", {
         username: email,
@@ -22,27 +21,44 @@ export const signUpUser = createAsyncThunk(
         firstname: firstName,
         lastname: lastName,
       });
-      console.log("from signup user", response);
+      return response.data;
     } catch (error) {
-      console.error(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString() ||
+        error.message;
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
 
 export const signInUser = createAsyncThunk(
   "auth/signInUser",
-  async ({ email, password }) => {
+  async ({ email, password }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/login", {
         username: email,
         password: password,
       });
-      console.log("from signin user", response);
+      return response.data;
     } catch (error) {
-      console.error(error);
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.toString() ||
+        error.message;
+      return thunkAPI.rejectWithValue(message);
     }
   }
 );
+
+export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
+  localStorage.removeItem("user");
+  localStorage.clear();
+});
 
 const authSlice = createSlice({
   name: "auth",
@@ -55,31 +71,47 @@ const authSlice = createSlice({
       state.message = "";
     },
   },
+
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state) => {
         state.isLoader = true;
       })
       .addCase(signUpUser.fulfilled, (state, action) => {
+        console.log("action", action);
         state.isLoader = false;
         state.isSuccess = true;
-        state.user = action.payload.encodedToken;
+        state.user = action.payload.foundUser;
+        state.token = action.payload.encodedToken;
+        localStorage.setItem("token", state.token);
         localStorage.setItem("user", JSON.stringify(state.user));
       })
-      .addCase(signUpUser.rejected, (state) => {})
+      .addCase(signUpUser.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoader = false;
+        state.message = action.payload;
+      })
       .addCase(signInUser.pending, (state) => {
         state.isLoader = true;
       })
       .addCase(signInUser.fulfilled, (state, action) => {
+        console.log("action", action);
         state.isLoader = false;
         state.isSuccess = true;
-        state.user = action.payload.data.encodedToken;
-
-        localStorage.setItem("user", state.user);
-        // localStorage.setItem("user", JSON.stringify(state.user));
+        state.user = action.payload.foundUser;
+        state.token = action.payload.encodedToken;
+        localStorage.setItem("token", state.token);
+        localStorage.setItem("user", JSON.stringify(state.user));
+      })
+      .addCase(signInUser.rejected, (state, action) => {
+        state.isError = true;
+        state.isLoader = false;
+        state.message = action.payload;
       });
   },
 });
 
 export const { reset } = authSlice.actions;
 export default authSlice.reducer;
+
+console.log(authSlice);
