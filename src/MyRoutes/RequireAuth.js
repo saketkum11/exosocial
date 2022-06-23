@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-import { Navigate, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 const RequireAuth = () => {
-  const { isAuth } = useSelector((state) => state.auth);
+  const { token } = useSelector((store) => store.auth);
+
   const location = useLocation();
-  return isAuth ? (
+  return token ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location.pathname }} replace />

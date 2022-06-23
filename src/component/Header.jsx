@@ -1,9 +1,16 @@
-import { Link } from "react-router-dom";
-import { logoutUser, reset } from "../../features/auth/authSlice";
-import { useSelector, useDispatch } from "redux-react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser, reset } from "../features/auth/authSlice";
 const Header = () => {
-  const { isAuth } = useSelector();
-
+  const { token } = useSelector((store) => store.auth);
+  console.log("token", token);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onLogout = () => {
+    dispatch(logoutUser());
+    dispatch(reset());
+    navigate("/");
+  };
   return (
     <>
       <nav className="bg-white sticky top-0">
@@ -46,10 +53,16 @@ const Header = () => {
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
               <div className="ml-3 relative">
-                {isAuth ? (
+                {token ? (
+                  <button
+                    onClick={onLogout}
+                    className="bg-indigo-800  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                  >
+                    Logout
+                  </button>
+                ) : (
                   <Link
                     to="/login"
-                    type="button"
                     className="bg-indigo-800  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                     id="user-menu-button"
                     aria-expanded="false"
@@ -57,10 +70,6 @@ const Header = () => {
                   >
                     Login
                   </Link>
-                ) : (
-                  <button className="bg-indigo-800  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
-                    Logout
-                  </button>
                 )}
               </div>
             </div>

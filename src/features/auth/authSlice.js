@@ -6,9 +6,8 @@ const initialState = {
   isError: false,
   isLoader: false,
   isSuccess: false,
-  isAuth: localStorage.getItem("token") ? true : false,
-  user: localStorage.getItem("user"),
-  token: localStorage.getItem("token"),
+  user: localStorage.getItem("user") || null,
+  token: localStorage.getItem("token") || null,
 };
 
 export const signUpUser = createAsyncThunk(
@@ -56,8 +55,7 @@ export const signInUser = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
-  localStorage.removeItem("user");
-  localStorage.clear();
+  await localStorage.removeItem("token");
 });
 
 const authSlice = createSlice({
@@ -107,6 +105,9 @@ const authSlice = createSlice({
         state.isError = true;
         state.isLoader = false;
         state.message = action.payload;
+      })
+      .addCase(logoutUser.fulfilled, (state) => {
+        state.token = null;
       });
   },
 });
