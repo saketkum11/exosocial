@@ -7,6 +7,7 @@ import {
   Landing,
   NotFound,
   Profile,
+  RequireAuth,
   Signin,
   Signup,
 } from "../Page";
@@ -17,12 +18,14 @@ const MyRoutes = () => {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route element={<HomeOutlet />}>
-          <Route path="/home" element={<Home />} />
-          <Route path="/explore" element={<Explore />} />
-          <Route path="/saved" element={<BookMark />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/home" element={<Home />} />
+            <Route path="/explore" element={<Explore />} />
+            <Route path="/saved" element={<BookMark />} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
         </Route>
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

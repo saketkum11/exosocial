@@ -4,7 +4,7 @@ import { Signup } from "../Auth/Signup";
 const Landing = () => {
   return (
     <>
-      <main className="grid grid-cols-12 grid-rows-6 container ">
+      <main className="grid grid-cols-12 grid-rows-6  ">
         <section className="col-start-3 col-end-6 row-start-3 row-end-6 content-start">
           <span className="text-3xl font-bold text-indigo-800">
             <Link to="/home">ExoSocial</Link>

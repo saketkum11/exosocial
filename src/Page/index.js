@@ -16,3 +16,4 @@ export { HomeOutlet } from "../Page/HomeOutlet";
 export { UserProfile } from "../component/UserProfile";
 export { ExploreTab } from "../component/ExploreTab";
 export { Post } from "../component/Post";
+export { RequireAuth } from "../MyRoutes/RequireAuth";
