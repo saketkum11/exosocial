@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInUser } from "../../features/auth/authSlice";
 
 const Signin = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,17 +18,20 @@ const Signin = () => {
     password: "saket123",
   };
 
+  const handleGuest = () => {
+    dispatch(signInUser(defaultUser));
+    navigate("/home");
+  };
+
   const handleEvent = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handelSignIn = () => {
     dispatch(signInUser(formData));
+    navigate("/home");
   };
 
-  const handleGuess = () => {
-    dispatch(signInUser(defaultUser));
-  };
   return (
     <>
       <section className="grid grid-cols-12 ">
@@ -80,10 +83,10 @@ const Signin = () => {
           </form>
           <div>
             <button
-              onClick={handleGuess}
+              onClick={() => handleGuest()}
               className="w-full p-1 flex justify-center rounded-md border-gray-300  border-2 text-gray-400 text-lg items-center my-5"
             >
-              Login as guess
+              Login as Guest
             </button>
             <Link to="/">Don't Have Account ?</Link>
           </div>

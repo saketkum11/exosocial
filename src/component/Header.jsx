@@ -1,16 +1,19 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { logoutUser, reset } from "../features/auth/authSlice";
+import { reset, logout } from "../features/auth/authSlice";
+
 const Header = () => {
   const { token } = useSelector((store) => store.auth);
-  console.log("token", token);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const onLogout = () => {
-    dispatch(logoutUser());
+    dispatch(logout());
     dispatch(reset());
     navigate("/");
   };
+
   return (
     <>
       <nav className="bg-white sticky top-0">

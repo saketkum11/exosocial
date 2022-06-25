@@ -54,19 +54,21 @@ export const signInUser = createAsyncThunk(
   }
 );
 
-export const logoutUser = createAsyncThunk("auth/logoutUser", async () => {
-  await localStorage.removeItem("token");
-});
-
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
+    logout: () => {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+    },
     reset: (state) => {
       state.error = false;
       state.isLoader = false;
       state.isSuccess = false;
       state.message = "";
+      state.token = null;
+      state.user = null;
     },
   },
 
@@ -79,7 +81,7 @@ const authSlice = createSlice({
         console.log("action", action);
         state.isLoader = false;
         state.isSuccess = true;
-        state.user = action.payload.foundUser;
+        state.user = action.payload.createdUser;
         state.token = action.payload.encodedToken;
         localStorage.setItem("token", state.token);
         localStorage.setItem("user", JSON.stringify(state.user));
@@ -93,7 +95,6 @@ const authSlice = createSlice({
         state.isLoader = true;
       })
       .addCase(signInUser.fulfilled, (state, action) => {
-        console.log("action", action);
         state.isLoader = false;
         state.isSuccess = true;
         state.user = action.payload.foundUser;
@@ -105,14 +106,11 @@ const authSlice = createSlice({
         state.isError = true;
         state.isLoader = false;
         state.message = action.payload;
-      })
-      .addCase(logoutUser.fulfilled, (state) => {
-        state.token = null;
       });
   },
 });
 
-export const { reset } = authSlice.actions;
+export const { reset, logout } = authSlice.actions;
 export default authSlice.reducer;
 
 console.log(authSlice);

@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { signUpUser } from "../../features/auth/authSlice";
+import { Link, useNavigate } from "react-router-dom";
+import { signInUser, signUpUser } from "../../features/auth/authSlice";
 
 const Signup = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [userCredential, setUserCredential] = useState({
     firstName: "",
     lastName: "",
@@ -14,16 +15,16 @@ const Signup = () => {
 
   const { firstName, lastName, email, password } = userCredential;
 
-  const log = console.log;
   const handleEvent = (e) => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
   };
 
   const handleSignUp = () => {
     dispatch(signUpUser(userCredential));
+    dispatch(signInUser({ email, password }));
+    navigate("/home");
   };
 
-  log(userCredential);
   return (
     <>
       <div className="p-4 bg-white ">
