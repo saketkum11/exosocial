@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { PostModal } from "./PostModal";
 
 const SideBar = () => {
+  const [modalPostFlag, setModalPostFlag] = useState(false);
   return (
     <>
       <aside className="col-start-2 col-end-4 ">
@@ -29,10 +32,13 @@ const SideBar = () => {
               <span>Profile</span>
             </Link>
           </li>
-          <li className="p-2 flex justify-center bg-indigo-800 text-white text-lg items-center">
-            <button>Create New Post</button>
+          <li className="rounded-md p-2 flex justify-center bg-indigo-800 text-white text-lg items-center">
+            <button onClick={() => setModalPostFlag((flag) => !flag)}>
+              Create New Post
+            </button>
           </li>
         </ul>
+        {modalPostFlag && <PostModal />}
       </aside>
     </>
   );

@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { PostCard } from "./PostCard";
-
+import { useDispatch } from "react-redux";
+import { getAllPost, getUser } from "../features/posts/postSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const UserProfile = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
+  const notify = () => toast("Wow so easy !");
   return (
     <>
       <div className="col-start-4 col-end-10 ">
-        {" "}
         <section className="flex flex-col items-center">
           <img
             src="./assets/social.jpg"
@@ -14,7 +21,13 @@ const UserProfile = () => {
           />
           <span className="font-bold  text-lg">Adam Josh</span>
           <span className="text-lg">@adamJosh</span>
-          <button className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75">
+          <button
+            onClick={() => {
+              dispatch(getAllPost());
+              notify();
+            }}
+            className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75"
+          >
             Edit Button
           </button>
           <p className="text-center my-2">
@@ -40,7 +53,8 @@ const UserProfile = () => {
             </div>
           </div>
         </section>
-        <PostCard />
+
+        <ToastContainer />
       </div>
     </>
   );

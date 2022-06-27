@@ -1,9 +1,9 @@
 import { PostCard } from "./PostCard";
 
-const Card = () => {
+const Card = ({ post }) => {
   return (
     <>
-      <PostCard />
+      <PostCard post={post} />
     </>
   );
 };
