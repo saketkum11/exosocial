@@ -6,6 +6,7 @@ const PostModal = () => {
   const [feed, setFeed] = useState({
     content: "",
   });
+
   const dispatch = useDispatch();
 
   const contentHandler = (event) => {
@@ -13,7 +14,7 @@ const PostModal = () => {
   };
 
   const handleSubmitPost = () => {
-    dispatch(createPost(feed));
+    dispatch(createPost());
   };
   console.log("from postmodal feed", feed);
   return (

@@ -58,8 +58,7 @@ export const createPost = createAsyncThunk(
           },
         }
       );
-
-      console.log("from create data", response.data);
+      return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
@@ -103,7 +102,7 @@ const postSlice = createSlice({
       // for createpost
       .addCase(createPost.fulfilled, (state, action) => {
         console.log("from create post fullfilled", action);
-        //  state.posts = action.payload.posts;
+        state.posts = action.payload.posts;
       });
   },
 });
