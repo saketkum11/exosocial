@@ -2,28 +2,55 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
-  allUser: [],
   posts: [],
 };
 
-export const getUser = createAsyncThunk("post/getUser", async () => {
-  try {
-    const response = await axios.get("/api/users");
-    return response.data.users;
-  } catch (error) {
-    console.error(error);
+export const getAllPost = createAsyncThunk(
+  "post/getAllPost",
+  async ({ rejectWithValue }) => {
+    try {
+      const response = await axios.get("/api/posts");
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-});
+);
 
-export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
-  try {
-    const response = await axios.get("/api/posts");
-    console.log("from getAll Post ", response.data.posts);
-    return response.data.posts;
-  } catch (error) {
-    console.error(error);
+export const createPost = createAsyncThunk(
+  "post/createPost",
+  async ({ postData, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        "/api/posts",
+        { postData },
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
   }
-});
+);
+export const deletePost = createAsyncThunk(
+  "post/deletePost",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(`/api/posts/${postId}`, {
+        headers: {
+          authorization: authToken,
+        },
+      });
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 export const individualPost = createAsyncThunk(
   "post/individualPost",
   async () => {
@@ -38,39 +65,6 @@ export const individualPost = createAsyncThunk(
 export const userPost = createAsyncThunk("post/userPost", async () => {
   try {
     const response = await axios.get("/api/posts/user/:username");
-    return response.data.posts;
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-export const createPost = createAsyncThunk(
-  "post/createPost",
-  async (post, thunkAPI) => {
-    try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "/api/posts",
-        { post },
-        {
-          headers: {
-            authorization: token,
-          },
-        }
-      );
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
-export const deletePost = createAsyncThunk("post/deletePost", async () => {
-  try {
-    const response = await axios.get("/api/posts/:postId", {
-      headers: {
-        authorization: encodedToken,
-      },
-    });
     return response.data.posts;
   } catch (error) {
     console.error(error);
@@ -96,16 +90,11 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getAllPost.pending, (state) => {})
       .addCase(getAllPost.fulfilled, (state, action) => {
-        state.posts = action.payload;
-      })
-      // for createpost
-      .addCase(createPost.fulfilled, (state, action) => {
-        console.log("from create post fullfilled", action);
-        state.posts = action.payload.posts;
+        console.log("from getAllPost ", action);
       });
   },
 });
 
 export default postSlice.reducer;
-console.log("slice", postSlice);

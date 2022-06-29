@@ -7,7 +7,7 @@ function App() {
     <div className="App">
       <Header />
       <MyRoutes />
-      <ToastContainer />
+      <ToastContainer autoClose={2500} />
     </div>
   );
 }

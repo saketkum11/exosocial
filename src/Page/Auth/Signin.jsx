@@ -14,7 +14,7 @@ const Signin = () => {
   const { email, password } = formData;
 
   const defaultUser = {
-    email: "saket601@gmail.com",
+    email: "saket601",
     password: "saket123",
   };
 
@@ -52,7 +52,7 @@ const Signin = () => {
               </label>
               <input
                 onChange={(e) => handleEvent(e)}
-                type="email"
+                type="text"
                 name="email"
                 required
                 value={email}

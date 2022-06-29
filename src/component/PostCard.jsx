@@ -1,3 +1,6 @@
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "../features/posts/postSlice";
+import { toast } from "react-toastify";
 const PostCard = ({ post }) => {
   const {
     content,
@@ -8,6 +11,15 @@ const PostCard = ({ post }) => {
     likedBy,
     likeCount,
   } = post;
+
+  const dispatch = useDispatch();
+  const { token } = useSelector((store) => store.auth);
+
+  const handleDeletePost = (postId, authToken) => {
+    console.log("click");
+    dispatch(deletePost({ postId, authToken }));
+    toast.error("deleted post");
+  };
   return (
     <>
       <div className="col-start-4 col-end-10">
@@ -27,7 +39,7 @@ const PostCard = ({ post }) => {
                 </div>
 
                 <button>
-                  <i class="fa-solid fa-ellipsis"></i>
+                  <i className="fa-solid fa-ellipsis"></i>
                 </button>
               </div>
 
@@ -35,16 +47,16 @@ const PostCard = ({ post }) => {
 
               <div className="flex justify-between py-2">
                 <button>
-                  <i class="fa-solid fa-heart"></i>
+                  <i className="fa-solid fa-heart"></i>
                 </button>
                 <button>
-                  <i class="fa-solid fa-message"></i>
+                  <i className="fa-solid fa-message"></i>
+                </button>
+                <button onClick={() => handleDeletePost(_id, token)}>
+                  <i className="fa-solid fa-trash"></i>
                 </button>
                 <button>
-                  <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-bookmark"></i>
+                  <i className="fa-solid fa-bookmark"></i>
                 </button>
               </div>
             </div>

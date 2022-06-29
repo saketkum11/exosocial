@@ -38,7 +38,7 @@ const SideBar = () => {
             </button>
           </li>
         </ul>
-        {modalPostFlag && <PostModal />}
+        {modalPostFlag && <PostModal setModalPostFlag={setModalPostFlag} />}
       </aside>
     </>
   );

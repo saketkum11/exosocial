@@ -16,13 +16,13 @@ const Post = () => {
           <div className="flex justify-between ">
             <div className="flex">
               <button className="mr-1">
-                <i class="fa-solid fa-image"></i>
+                <i className="fa-solid fa-image"></i>
               </button>
               <button className="mr-1">
-                <i class="fa-solid fa-video"></i>
+                <i className="fa-solid fa-video"></i>
               </button>
               <button className="mr-1">
-                <i class="fa-solid fa-face-smile"></i>
+                <i className="fa-solid fa-face-smile"></i>
               </button>
             </div>
             <button className="bg-indigo-800 text-white  py-2 px-5 mt-2 ">
