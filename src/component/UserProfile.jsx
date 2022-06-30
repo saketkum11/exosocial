@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,8 +7,12 @@ import { getAllUser, getIndividualUser } from "../features/user/userSlice";
 
 const UserProfile = () => {
   const dispatch = useDispatch();
-
-  const notify = () => toast("Wow so easy !");
+  const { username } = useParams();
+  console.log("username", username);
+  const { token } = useSelector((store) => store.auth);
+  useEffect(() => {
+    dispatch(getIndividualUser(username));
+  }, []);
   return (
     <>
       <div className="col-start-4 col-end-10 ">

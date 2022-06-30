@@ -18,3 +18,4 @@ export { ExploreTab } from "../component/ExploreTab";
 export { Post } from "../component/Post";
 export { RequireAuth } from "../MyRoutes/RequireAuth";
 export { PostModal } from "../component/PostModal";
+export { ProfileModal } from "../component/ProfileModal";

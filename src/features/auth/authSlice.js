@@ -6,7 +6,7 @@ const initialState = {
   isError: false,
   isLoader: false,
   isSuccess: false,
-  user: localStorage.getItem("user") || null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   token: localStorage.getItem("token") || null,
 };
 

@@ -1,9 +1,11 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { PostModal } from "./PostModal";
 
 const SideBar = () => {
   const [modalPostFlag, setModalPostFlag] = useState(false);
+  const { user } = useSelector((store) => store.auth);
   return (
     <>
       <aside className="col-start-2 col-end-4 ">
@@ -27,7 +29,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="p-2 py-3 flex justify-start text-lg items-center">
-            <Link to="/profile">
+            <Link to={`/profile/${user?.username}`}>
               <i className="fa-solid fa-user  mr-3"></i>
               <span>Profile</span>
             </Link>

@@ -271,8 +271,6 @@ export const deletePostHandler = function (schema, request) {
     console.log("post id from postcontroller", postId);
     let post = schema.posts.findBy({ _id: postId }).attrs;
     if (post.username !== user.username) {
-      console.log("from poatcontroller", post.username, user.username);
-
       return new Response(
         400,
         {},

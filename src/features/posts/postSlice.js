@@ -5,17 +5,14 @@ const initialState = {
   posts: [],
 };
 
-export const getAllPost = createAsyncThunk(
-  "post/getAllPost",
-  async ({ rejectWithValue }) => {
-    try {
-      const response = await axios.get("/api/posts");
-      return response.data;
-    } catch (error) {
-      return rejectWithValue(error);
-    }
+export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
+  try {
+    const response = await axios.get("/api/posts");
+    return response.data;
+  } catch (error) {
+    return error;
   }
-);
+});
 
 export const createPost = createAsyncThunk(
   "post/createPost",
@@ -90,9 +87,25 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      /// get all post
       .addCase(getAllPost.pending, (state) => {})
       .addCase(getAllPost.fulfilled, (state, action) => {
         console.log("from getAllPost ", action);
+        state.posts = action.payload.posts;
+      })
+      .addCase(getAllPost.rejected, (state) => {})
+
+      /// create post
+      .addCase(createPost.pending, (state) => {})
+      .addCase(createPost.fulfilled, (state, { payload }) => {
+        console.log("from action", payload);
+        state.posts = payload.posts;
+      })
+      .addCase(createPost.rejected, (state) => {})
+      // deletePost
+      .addCase(deletePost.pending, (state) => {})
+      .addCase(deletePost.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
       });
   },
 });
