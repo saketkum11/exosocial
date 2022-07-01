@@ -41,8 +41,13 @@ const ProfileModal = ({ setProfileEditFlag }) => {
               >
                 <div className="flex flex-col w-full ">
                   <div className="flex flex-col justify-between ">
-                    <div>
-                      <label htmlFor="firstname">FirstName</label>
+                    <div className="my-2">
+                      <label
+                        htmlFor="firstname"
+                        className="block text-sm font-medium text-gray-700 my-2 ml-2"
+                      >
+                        FirstName
+                      </label>
                       <input
                         onChange={(e) =>
                           setUpdateProfile({
@@ -56,11 +61,16 @@ const ProfileModal = ({ setProfileEditFlag }) => {
                         type="text"
                         value={updateProfile.firstName}
                         disabled
-                        className="bg-gray-100 border-md"
+                        className="bg-gray-100 border-md focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md  py-2"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="lastname">last Name</label>
+                    <div className="my-2">
+                      <label
+                        htmlFor="lastname"
+                        className="block text-sm font-medium text-gray-700 my-2 ml-2"
+                      >
+                        LastName
+                      </label>
                       <input
                         onChange={(e) =>
                           setUpdateProfile({
@@ -74,10 +84,16 @@ const ProfileModal = ({ setProfileEditFlag }) => {
                         name="lastName"
                         type="text"
                         disabled
+                        className="bg-gray-100 border-md focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md  py-2"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="username">UserName</label>
+                    <div className="my-2">
+                      <label
+                        htmlFor="username"
+                        className="block text-sm font-medium text-gray-700 my-2 ml-2"
+                      >
+                        UserName
+                      </label>
                       <input
                         onChange={(e) =>
                           setUpdateProfile({
@@ -91,10 +107,16 @@ const ProfileModal = ({ setProfileEditFlag }) => {
                         name="username"
                         type="text"
                         disabled
+                        className="bg-gray-100 border-md focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md  py-2"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="bio">Bio</label>
+                    <div className="my-2">
+                      <label
+                        htmlFor="bio"
+                        className="block text-sm font-medium text-gray-700 my-2 ml-2"
+                      >
+                        Bio
+                      </label>
                       <input
                         onChange={(e) =>
                           setUpdateProfile({
@@ -107,10 +129,16 @@ const ProfileModal = ({ setProfileEditFlag }) => {
                         required
                         name="bio"
                         type="text"
+                        className="bg-gray-100 border-md focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md  py-2"
                       />
                     </div>
-                    <div>
-                      <label htmlFor="website">Website</label>
+                    <div className="my-2">
+                      <label
+                        htmlFor="website"
+                        className="block text-sm font-medium text-gray-700 my-2 ml-2"
+                      >
+                        Website
+                      </label>
                       <input
                         onChange={(e) =>
                           setUpdateProfile({
@@ -123,6 +151,7 @@ const ProfileModal = ({ setProfileEditFlag }) => {
                         required
                         name="website"
                         type="text"
+                        className="bg-gray-100 border-md focus:ring-indigo-500 focus:border-indigo-500 block w-full pl-7 pr-12 sm:text-sm border-gray-300 rounded-md py-2"
                       />
                     </div>
 
