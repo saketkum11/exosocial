@@ -16,8 +16,6 @@ const Profile = () => {
   const { avatarURL, bio, firstName, website, lastName, followers, following } =
     individualUser;
 
-  console.log("from profile", posts);
-
   useEffect(() => {
     dispatch(getIndividualUser(username));
     dispatch(getUserPost(username));

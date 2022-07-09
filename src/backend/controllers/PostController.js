@@ -78,7 +78,6 @@ export const createPostHandler = function (schema, request) {
       );
     }
     const { postData } = JSON.parse(request.requestBody);
-    console.log("post data from backend", postData);
     const post = {
       _id: uuid(),
       ...postData,
@@ -268,7 +267,6 @@ export const deletePostHandler = function (schema, request) {
       );
     }
     const postId = request.params.postId;
-    console.log("post id from postcontroller", postId);
     let post = schema.posts.findBy({ _id: postId }).attrs;
     if (post.username !== user.username) {
       return new Response(
