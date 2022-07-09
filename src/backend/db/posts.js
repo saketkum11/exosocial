@@ -20,7 +20,7 @@ export const posts = [
     lastName: "",
     username: "Tarandeep_s1ngh",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1511020219250376713/zFRXcl9k_400x400.jpg",
+      "	https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
