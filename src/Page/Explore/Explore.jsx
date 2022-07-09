@@ -9,7 +9,6 @@ const Explore = () => {
           <span>Explore</span>
         </div>
         <ExploreTab />
-        <PostCard />
       </div>
     </>
   );

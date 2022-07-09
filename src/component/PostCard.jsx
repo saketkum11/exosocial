@@ -1,146 +1,80 @@
-const PostCard = () => {
+import { useDispatch, useSelector } from "react-redux";
+import { deletePost } from "../features/posts/postSlice";
+import { toast } from "react-toastify";
+import { useState } from "react";
+import { EditPost } from "./EditPost";
+
+const PostCard = ({ post }) => {
+  const {
+    content,
+    profilename,
+    username,
+    _id,
+    dislikedBy,
+    likedBy,
+    likeCount,
+    avatarURL,
+    firstName,
+    lastName,
+  } = post;
+
+  const dispatch = useDispatch();
+  const { token, user } = useSelector((store) => store.auth);
+  const { posts } = useSelector((store) => store.post);
+  const [editFlag, setEditFlag] = useState(false);
+  const handleDeletePost = (postId, authToken) => {
+    dispatch(deletePost({ postId, authToken }));
+    toast.error("deleted post");
+  };
+
   return (
     <>
       <div className="col-start-4 col-end-10">
-        <div className="flex flex-col flex-wrap">
-          <div className="flex text-lg justify-between px-3 my-3">
-            <span>Latest Post</span>
-            <button>
-              <i class="fa-solid fa-ellipsis-vertical"></i>
-            </button>
-          </div>
-          <section className="bg-white flex p-3  my-3">
-            <img
-              src="./assets/social.jpg"
-              className=" h-10 w-10 rounded-full ring-2 ring-white object-cover "
-            />
-
+        <div className="relative flex flex-col flex-wrap">
+          <section className="p-5 bg-white my-3 wt-full">
             <div className="flex flex-col ">
-              <div className="flex justify-between py-2">
-                <span>
-                  Adam Josh <small>@adamJosh</small>
-                  <small>1min ago</small>
-                </span>
+              <div className="flex items-center justify-between  py-2">
+                <div className="flex items-center ">
+                  <img
+                    src={avatarURL}
+                    className="h-10 w-10 rounded-full   object-cover bg-indigo-800 mr-2"
+                  />
+                  <span>
+                    {firstName}
 
-                <button>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </button>
+                    {lastName}
+                    <small>@{username}</small>
+                  </span>
+                </div>
+                {user.username === username && (
+                  <button onClick={() => setEditFlag((flag) => !flag)}>
+                    <i className="fa-solid fa-ellipsis"></i>
+                  </button>
+                )}
+
+                {editFlag && <EditPost setEditFlag={setEditFlag} post={post} />}
               </div>
 
-              <p className=" py-2">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore
-                quos officia eligendi in architecto, consequuntur tempora
-                aspernatur veniam repellat nemo harum eius fugit optio, rerum
-                error sed beatae molestias at consectetur velit modi. Dolor,
-                molestias non corporis eius quos dolorem repellendus. Quisquam
-                in error vitae exercitationem omnis voluptatibus unde
-                consequuntur.
-              </p>
+              <p className=" py-5 text-left">{content}</p>
 
               <div className="flex justify-between py-2">
                 <button>
-                  <i class="fa-solid fa-heart"></i>
+                  <i className="fa-solid fa-heart"></i>
                 </button>
                 <button>
-                  <i class="fa-solid fa-message"></i>
+                  <i className="fa-solid fa-message"></i>
                 </button>
-                <button>
-                  <i class="fa-solid fa-share-nodes"></i>
+
+                <button onClick={() => handleDeletePost(_id, token)}>
+                  <i className="fa-solid fa-trash"></i>
                 </button>
+
                 <button>
-                  <i class="fa-solid fa-bookmark"></i>
+                  <i className="fa-solid fa-bookmark"></i>
                 </button>
               </div>
             </div>
           </section>
-          <div className="bg-white flex p-3">
-            <img
-              src="./assets/social.jpg"
-              className="rounded-full   w-10 h-10 mr-2 "
-              alt=""
-            />
-            <div className="flex flex-col ">
-              <div className="flex justify-between py-2">
-                <div className="flex">
-                  <span>Adam Josh</span>
-                  <span>@adamJosh</span>
-                  <span>1min ago</span>
-                </div>
-                <button>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </button>
-              </div>
-
-              <p className="text-left py-2">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore
-                quos officia eligendi in architecto, consequuntur tempora
-                aspernatur veniam repellat nemo harum eius fugit optio, rerum
-                error sed beatae molestias at consectetur velit modi. Dolor,
-                molestias non corporis eius quos dolorem repellendus. Quisquam
-                in error vitae exercitationem omnis voluptatibus unde
-                consequuntur.
-              </p>
-
-              <div className="flex justify-between py-2">
-                <button>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-message"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-bookmark"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white flex p-3">
-            <img
-              src="./assets/social.jpg"
-              className="rounded-full  w-16 h-10 mr-2 "
-              alt=""
-            />
-            <div className="flex flex-col ">
-              <div className="flex justify-between py-2">
-                <div className="flex">
-                  <span>Adam Josh</span>
-                  <span>@adamJosh</span>
-                  <span>1min ago</span>
-                </div>
-                <button>
-                  <i class="fa-solid fa-ellipsis"></i>
-                </button>
-              </div>
-
-              <p className="text-left py-2">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore
-                quos officia eligendi in architecto, consequuntur tempora
-                aspernatur veniam repellat nemo harum eius fugit optio, rerum
-                error sed beatae molestias at consectetur velit modi. Dolor,
-                molestias non corporis eius quos dolorem repellendus. Quisquam
-                in error vitae exercitationem omnis voluptatibus unde
-                consequuntur.
-              </p>
-
-              <div className="flex justify-between py-2">
-                <button>
-                  <i class="fa-solid fa-heart"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-message"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-share-nodes"></i>
-                </button>
-                <button>
-                  <i class="fa-solid fa-bookmark"></i>
-                </button>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </>

@@ -23,6 +23,7 @@ const MyRoutes = () => {
             <Route path="/explore" element={<Explore />} />
             <Route path="/saved" element={<BookMark />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/:username" element={<Profile />} />
           </Route>
         </Route>
         <Route path="/login" element={<Signin />} />

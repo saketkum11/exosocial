@@ -1,10 +1,6 @@
 import { PostCard } from "../../component/PostCard";
 
 const BookMark = () => {
-  return (
-    <>
-      <PostCard />
-    </>
-  );
+  return <></>;
 };
 export { BookMark };
