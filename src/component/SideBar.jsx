@@ -1,15 +1,12 @@
-import { useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { PostModal } from "./PostModal";
 
 const SideBar = () => {
-  const [modalPostFlag, setModalPostFlag] = useState(false);
   const { user } = useSelector((store) => store.auth);
   return (
     <>
       <aside className="col-start-2 col-end-4 ">
-        <ul className="flex flex-col">
+        <ul className="flex flex-col bg-white rounded-md mr-2">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
             <Link to="/home">
               <i className="fa-solid fa-house-user mr-3 "></i>
@@ -34,13 +31,7 @@ const SideBar = () => {
               <span>Profile</span>
             </Link>
           </li>
-          <li className="rounded-md p-2 flex justify-center bg-indigo-800 text-white text-lg items-center">
-            <button onClick={() => setModalPostFlag((flag) => !flag)}>
-              Create New Post
-            </button>
-          </li>
         </ul>
-        {modalPostFlag && <PostModal setModalPostFlag={setModalPostFlag} />}
       </aside>
     </>
   );

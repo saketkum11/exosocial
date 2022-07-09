@@ -14,6 +14,30 @@ export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
   }
 });
 
+export const getUserPost = createAsyncThunk(
+  "user/getUserPost",
+  async (username, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/api/posts/user/${username}`);
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const getPostById = createAsyncThunk(
+  "post/getPostById",
+  async ({ postId }, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(`/api/posts/${postId}`);
+      return response.data;
+    } catch (error) {
+      return error;
+    }
+  }
+);
+
 export const createPost = createAsyncThunk(
   "post/createPost",
   async ({ postData, authToken }, { rejectWithValue }) => {
@@ -27,6 +51,7 @@ export const createPost = createAsyncThunk(
           },
         }
       );
+      console.log("from created", response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -48,38 +73,28 @@ export const deletePost = createAsyncThunk(
     }
   }
 );
-export const individualPost = createAsyncThunk(
-  "post/individualPost",
-  async () => {
+
+export const editPost = createAsyncThunk(
+  "post/editPost",
+  async ({ postData, postId, authToken }, { rejectWithValue }) => {
     try {
-      const response = await axios.get("/api/posts/:postId");
-      return response.data.post;
+      const response = await axios.post(
+        `/api/posts/edit/${postId}`,
+        {
+          postData,
+        },
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
     } catch (error) {
-      console.er(error);
+      rejectWithValue(error);
     }
   }
 );
-export const userPost = createAsyncThunk("post/userPost", async () => {
-  try {
-    const response = await axios.get("/api/posts/user/:username");
-    return response.data.posts;
-  } catch (error) {
-    console.error(error);
-  }
-});
-
-export const updatePost = createAsyncThunk("post/updatePost", async () => {
-  try {
-    const response = await axios.get("/api/posts/edit/:postId", {
-      headers: {
-        authorization: encodedToken,
-      },
-    });
-    return response.data.posts;
-  } catch (error) {
-    console.error(error);
-  }
-});
 
 const postSlice = createSlice({
   name: "post",
@@ -87,26 +102,39 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      /// get all post
       .addCase(getAllPost.pending, (state) => {})
       .addCase(getAllPost.fulfilled, (state, action) => {
-        console.log("from getAllPost ", action);
         state.posts = action.payload.posts;
       })
       .addCase(getAllPost.rejected, (state) => {})
 
+      // get user post
+      .addCase(getUserPost.pending, (state) => {})
+      .addCase(getUserPost.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(getUserPost.rejected, (state) => {})
+
       /// create post
       .addCase(createPost.pending, (state) => {})
       .addCase(createPost.fulfilled, (state, { payload }) => {
-        console.log("from action", payload);
         state.posts = payload.posts;
       })
       .addCase(createPost.rejected, (state) => {})
+
       // deletePost
       .addCase(deletePost.pending, (state) => {})
       .addCase(deletePost.fulfilled, (state, { payload }) => {
         state.posts = payload.posts;
-      });
+      })
+      .addCase(deletePost.rejected, (state) => {})
+      // edit Post
+      .addCase(editPost.pending, (state) => {})
+      .addCase(editPost.fulfilled, (state, { payload }) => {
+        console.log("action of editpost", payload);
+        state.posts = payload.posts;
+      })
+      .addCase(editPost.rejected, (state) => {});
   },
 });
 

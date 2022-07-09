@@ -1,21 +1,26 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getAllUser, getIndividualUser } from "../../features/user/userSlice";
+import { getIndividualUser } from "../../features/user/userSlice";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { toast } from "react-toastify";
-import { ProfileModal } from "..";
+import { ProfileModal, Card } from "..";
+import { getUserPost } from "../../features/posts/postSlice";
+
 const Profile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const [profileEditFlag, setProfileEditFlag] = useState(false);
-  const { allUser, individualUser } = useSelector((store) => store.user);
+  const { individualUser } = useSelector((store) => store.user);
+  const { posts, userPost } = useSelector((store) => store.post);
 
   const { avatarURL, bio, firstName, website, lastName, followers, following } =
     individualUser;
 
+  console.log("from profile", posts);
+
   useEffect(() => {
     dispatch(getIndividualUser(username));
+    dispatch(getUserPost(username));
   }, []);
 
   const editHandler = () => {
@@ -58,6 +63,15 @@ const Profile = () => {
               <span className="font-bold  text-medium">Followers</span>
             </div>
           </div>
+        </section>
+        <section>
+          {posts?.map((post) => {
+            return (
+              <>
+                <Card post={post} />
+              </>
+            );
+          })}
         </section>
       </div>
       {profileEditFlag && (
