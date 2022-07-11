@@ -3,6 +3,7 @@ import { deletePost } from "../features/posts/postSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { EditPost } from "./EditPost";
+import { PostComment } from "./PostComment";
 
 const PostCard = ({ post }) => {
   const {
@@ -16,12 +17,14 @@ const PostCard = ({ post }) => {
     avatarURL,
     firstName,
     lastName,
+    comments,
   } = post;
 
   const dispatch = useDispatch();
   const { token, user } = useSelector((store) => store.auth);
   const { posts } = useSelector((store) => store.post);
   const [editFlag, setEditFlag] = useState(false);
+  const [commentFlag, setCommentFlag] = useState(false);
   const handleDeletePost = (postId, authToken) => {
     dispatch(deletePost({ postId, authToken }));
     toast.error("deleted post");
@@ -61,7 +64,7 @@ const PostCard = ({ post }) => {
                 <button>
                   <i className="fa-solid fa-heart"></i>
                 </button>
-                <button>
+                <button onClick={() => setCommentFlag((flag) => !flag)}>
                   <i className="fa-solid fa-message"></i>
                 </button>
 
@@ -74,6 +77,9 @@ const PostCard = ({ post }) => {
                 </button>
               </div>
             </div>
+            {commentFlag && (
+              <PostComment post={post} commentFlag={commentFlag} />
+            )}
           </section>
         </div>
       </div>

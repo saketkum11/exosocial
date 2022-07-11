@@ -16,6 +16,14 @@ import {
   getAllUserPostsHandler,
 } from "./backend/controllers/PostController";
 import {
+  getPostCommentsHandler,
+  addPostCommentHandler,
+  editPostCommentHandler,
+  deletePostCommentHandler,
+  upvotePostCommentHandler,
+  downvotePostCommentHandler,
+} from "./backend/controllers/CommentsController";
+import {
   followUserHandler,
   getAllUsersHandler,
   getUserHandler,
