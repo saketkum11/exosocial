@@ -18,35 +18,30 @@ const PostComment = ({ post }) => {
   const { _id, comments } = post;
   const postId = _id;
 
-  //working
   const handleAddComment = (_id, commentData, authToken) => {
     dispatch(addComment({ commentData, postId: _id, authToken }));
   };
 
-  // working
   const handleUpdateComment = (commentId, _id, authToken, commentData) => {
     dispatch(editComment({ commentId, postId: _id, authToken, commentData }));
   };
 
-  // notworking
-  const deleteCommentHandler = (commentId, postId, authToken) => {
+  const handleDeleteComment = (commentId, postId, authToken) => {
     dispatch(deleteComment({ commentId, postId, authToken }));
   };
 
-  //not working
-  const handleUpVoteComment = (_id, id, token) => {
-    dispatch(upVoteComment({ commentId: _id, postId: id, authToken: token }));
+  const handleUpVoteComment = (_id, postId, token) => {
+    dispatch(upVoteComment({ commentId: _id, postId, authToken: token }));
   };
 
-  //not working
   const handleDownVoteComment = (commentId, postId, token) => {
     dispatch(downVoteComment({ commentId, postId, authToken: token }));
   };
-  console.log("from postcomment", post);
   return (
     <>
       {comments.map((comment) => {
-        console.log("from comments", comment);
+        const { votes } = comment;
+
         return (
           <>
             <div key={comment._id} className="bg-white px-1 border-t  border-b">
@@ -63,21 +58,24 @@ const PostComment = ({ post }) => {
                   </strong>
 
                   <button
-                    onClick={() => handleUpVoteComment(_id, postId, token)}
-                    className="flex items-center"
+                    onClick={() => {
+                      const commentId = comment?._id;
+                      handleUpVoteComment(commentId, postId, token);
+                    }}
+                    className="flex items-center text-green-600"
                   >
-                    <i class="fa-solid fa-sort-up"></i>
-                    <span>0</span>
+                    <i className="fa-solid fa-sort-up "></i>
+                    <span>{votes.upvotedBy.length}</span>
                   </button>
                   <button
                     onClick={() => {
                       const commentId = comment?._id;
                       handleDownVoteComment(commentId, postId, token);
                     }}
-                    className="flex items-center"
+                    className="flex items-center text-red-600"
                   >
-                    <i class="fa-solid fa-sort-down"></i>
-                    <span>0</span>
+                    <i className="fa-solid fa-sort-down"></i>
+                    <span>{votes.downvotedBy.length}</span>
                   </button>
                 </div>
                 <p className="ml-3">{comment.text}</p>
@@ -91,7 +89,7 @@ const PostComment = ({ post }) => {
                     <button
                       onClick={() => {
                         const commentId = comment?._id;
-                        deleteCommentHandler(commentId, postId, token);
+                        handleDeleteComment(commentId, postId, token);
                       }}
                     >
                       <i className="fa-solid fa-trash"></i>

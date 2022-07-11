@@ -49,7 +49,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "03/01/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -94,7 +94,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "02/25/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -126,7 +126,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "01/01/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -171,7 +171,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "05/01/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -203,7 +203,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "02/01/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -261,7 +261,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "01/01/2022".toString(),
     updatedAt: formatDate(),
   },
   {
@@ -306,7 +306,7 @@ export const posts = [
         },
       },
     ],
-    createdAt: formatDate(),
+    createdAt: "03/01/2022".toString(),
     updatedAt: formatDate(),
   },
 ];

@@ -1,10 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost } from "../features/posts/postSlice";
+import { deletePost, dislikePost, likePost } from "../features/posts/postSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { EditPost } from "./EditPost";
 import { PostComment } from "./PostComment";
-
+import moment from "moment";
 const PostCard = ({ post }) => {
   const {
     content,
@@ -18,6 +18,7 @@ const PostCard = ({ post }) => {
     firstName,
     lastName,
     comments,
+    createdAt,
   } = post;
 
   const dispatch = useDispatch();
@@ -25,11 +26,17 @@ const PostCard = ({ post }) => {
   const { posts } = useSelector((store) => store.post);
   const [editFlag, setEditFlag] = useState(false);
   const [commentFlag, setCommentFlag] = useState(false);
+
   const handleDeletePost = (postId, authToken) => {
     dispatch(deletePost({ postId, authToken }));
     toast.error("deleted post");
   };
-
+  const handleLikePost = (_id, authToken) => {
+    dispatch(likePost({ postId: _id, authToken }));
+  };
+  const handleDislikePost = (_id, authToken) => {
+    dispatch(dislikePost({ postId: _id, authToken }));
+  };
   return (
     <>
       <div className="col-start-4 col-end-10">
@@ -48,6 +55,7 @@ const PostCard = ({ post }) => {
                     {lastName}
                     <small>@{username}</small>
                   </span>
+                  <span>{moment(Date.parse(createdAt)).fromNow()}</span>
                 </div>
                 {user.username === username && (
                   <button onClick={() => setEditFlag((flag) => !flag)}>
@@ -61,9 +69,25 @@ const PostCard = ({ post }) => {
               <p className=" py-5 text-left">{content}</p>
 
               <div className="flex justify-between py-2">
-                <button>
-                  <i className="fa-solid fa-heart"></i>
-                </button>
+                {post?.likes.likedBy.find(
+                  (liked) => liked.username === user.username
+                ) ? (
+                  <button
+                    onClick={() => handleDislikePost(_id, token)}
+                    className="text-red-700"
+                  >
+                    <i className="fa-solid fa-heart ">
+                      <span>{post?.likes.likeCount}</span>
+                    </i>
+                  </button>
+                ) : (
+                  <button onClick={() => handleLikePost(_id, token)}>
+                    <i className="fa-solid fa-heart ">
+                      <span>{post?.likes.likeCount}</span>
+                    </i>
+                  </button>
+                )}
+
                 <button onClick={() => setCommentFlag((flag) => !flag)}>
                   <i className="fa-solid fa-message"></i>
                 </button>
