@@ -5,6 +5,10 @@ import { useState } from "react";
 import { EditPost } from "./EditPost";
 import { PostComment } from "./PostComment";
 import moment from "moment";
+import {
+  addBookmark,
+  removeBookmark,
+} from "../features/bookmark/bookmarkSlice";
 const PostCard = ({ post }) => {
   const {
     content,
@@ -23,10 +27,10 @@ const PostCard = ({ post }) => {
 
   const dispatch = useDispatch();
   const { token, user } = useSelector((store) => store.auth);
+  const { bookmarks } = useSelector((store) => store.bookmark);
   const { posts } = useSelector((store) => store.post);
   const [editFlag, setEditFlag] = useState(false);
   const [commentFlag, setCommentFlag] = useState(false);
-
   const handleDeletePost = (postId, authToken) => {
     dispatch(deletePost({ postId, authToken }));
     toast.error("deleted post");
@@ -36,6 +40,14 @@ const PostCard = ({ post }) => {
   };
   const handleDislikePost = (_id, authToken) => {
     dispatch(dislikePost({ postId: _id, authToken }));
+  };
+  const handleBookmark = (_id, token) => {
+    dispatch(addBookmark({ postId: _id, authToken: token }));
+    toast.success("Successfully AddBookmark");
+  };
+  const handleRemoveBookmark = (_id, token) => {
+    dispatch(removeBookmark({ postId: _id, authToken: token }));
+    toast.success("removed bookmark");
   };
   return (
     <>
@@ -57,7 +69,7 @@ const PostCard = ({ post }) => {
                   </span>
                   <span>{moment(Date.parse(createdAt)).fromNow()}</span>
                 </div>
-                {user.username === username && (
+                {user?.username === username && (
                   <button onClick={() => setEditFlag((flag) => !flag)}>
                     <i className="fa-solid fa-ellipsis"></i>
                   </button>
@@ -96,9 +108,18 @@ const PostCard = ({ post }) => {
                   <i className="fa-solid fa-trash"></i>
                 </button>
 
-                <button>
-                  <i className="fa-solid fa-bookmark"></i>
-                </button>
+                {bookmarks?.find((bookmark) => bookmark._id === post._id) ? (
+                  <button
+                    onClick={() => handleRemoveBookmark(_id, token)}
+                    className="text-indigo-500"
+                  >
+                    <i className="fa-solid fa-bookmark"></i>
+                  </button>
+                ) : (
+                  <button onClick={() => handleBookmark(_id, token)}>
+                    <i className="fa-solid fa-bookmark"></i>
+                  </button>
+                )}
               </div>
             </div>
             {commentFlag && (

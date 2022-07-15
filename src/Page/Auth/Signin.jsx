@@ -7,14 +7,14 @@ const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
 
-  const { email, password } = formData;
+  const { username, password } = formData;
 
   const defaultUser = {
-    email: "saket601",
+    username: "saket601",
     password: "saket123",
   };
 
@@ -48,14 +48,14 @@ const Signin = () => {
 
             <div className="flex flex-col my-2">
               <label htmlFor="email" className="flex">
-                Email
+                UserName
               </label>
               <input
                 onChange={(e) => handleEvent(e)}
                 type="text"
-                name="email"
+                name="username"
                 required
-                value={email}
+                value={username}
                 placeholder="eg.adam@gmail.com"
                 className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
               />

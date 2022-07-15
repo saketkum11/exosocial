@@ -6,16 +6,16 @@ const initialState = {
   isError: false,
   isLoader: false,
   isSuccess: false,
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: JSON.parse(localStorage.getItem("user")) || {},
   token: localStorage.getItem("token") || null,
 };
 
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
-  async ({ email, password, firstName, lastName }, thunkAPI) => {
+  async ({ username, password, firstName, lastName }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/signup", {
-        username: email,
+        username: username,
         password: password,
         firstname: firstName,
         lastname: lastName,
@@ -35,10 +35,10 @@ export const signUpUser = createAsyncThunk(
 
 export const signInUser = createAsyncThunk(
   "auth/signInUser",
-  async ({ email, password }, thunkAPI) => {
+  async ({ username, password }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/login", {
-        username: email,
+        username: username,
         password: password,
       });
       return response.data;
@@ -81,9 +81,10 @@ const authSlice = createSlice({
         state.isLoader = false;
         state.isSuccess = true;
         state.user = action.payload.createdUser;
+        console.log("user singup", action);
         state.token = action.payload.encodedToken;
         localStorage.setItem("token", state.token);
-        localStorage.setItem("user", JSON.stringify(state.user));
+        //  localStorage.setItem("user", JSON.stringify(state.user));
       })
       .addCase(signUpUser.rejected, (state, action) => {
         state.isError = true;
@@ -98,6 +99,7 @@ const authSlice = createSlice({
         state.isSuccess = true;
         state.user = action.payload.foundUser;
         state.token = action.payload.encodedToken;
+        console.log("user login", action);
         localStorage.setItem("token", state.token);
         localStorage.setItem("user", JSON.stringify(state.user));
       })

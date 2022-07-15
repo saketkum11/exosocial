@@ -6,6 +6,7 @@ import { formatDate } from "../utils/authUtils";
  * */
 
 export const users = [
+  // user 1
   {
     _id: uuid(),
     firstName: "Saket",
@@ -63,12 +64,16 @@ export const users = [
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },
+  // user 2
+
   {
     _id: uuid(),
     firstName: "Mani",
     lastName: "Kandan",
     username: "_manismk",
     password: "mani123",
+    avatarURL:
+      "https://pbs.twimg.com/profile_images/1430758653854851081/U1Kid3e7_200x200.jpg",
     following: [
       {
         _id: uuid(),
@@ -113,10 +118,179 @@ export const users = [
           "https://pbs.twimg.com/profile_images/1414657404843663368/rXyiNk3G_200x200.jpg",
       },
     ],
-    avatarURL:
-      "https://pbs.twimg.com/profile_images/1430758653854851081/U1Kid3e7_200x200.jpg",
+
     bio: "Learning web development @neogcamp'22 | Tweets about accessibility and my web dev journey.",
     website: "manikandan.netlify.app",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  // user 3
+
+  {
+    _id: uuid(),
+    firstName: "Pritam",
+    lastName: "Kumar",
+    username: "Pritamkr_",
+    avatarURL:
+      "https://pbs.twimg.com/profile_images/1504867168717983745/m0lXiJrv_200x200.jpg",
+    password: "pritam123",
+    following: [
+      {
+        _id: uuid(),
+        firstName: "Nikhil",
+        lastName: "_Belide",
+        username: "Nikhil_Belide",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1542024739816091649/1Kd8fuje_bigger.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Omkar",
+        lastName: "Ghate",
+        username: "OmkarGhate9",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1417120011492073472/GdzTo6Vn_bigger.jpg",
+      },
+    ],
+    followers: [
+      {
+        _id: uuid(),
+        firstName: "Biswarup",
+        lastName: "Bouri",
+        username: "BiswarupBouri",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1469195340020543490/MODOrmRn_bigger.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Sudarson",
+        lastName: "alder",
+        username: "SudarsonHalder",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1449702150389465088/hMuZWFVp_bigger.jpg",
+      },
+    ],
+
+    bio: "I learn,Build,and share it with you people, ",
+    website: "pritam-kumar.netlify.app",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  // user 4
+  {
+    _id: uuid(),
+    firstName: "Aryan",
+    lastName: "Sharma",
+    username: "aryan_developer",
+    password: "aryan123",
+    avatarURL:
+      "	https://pbs.twimg.com/profile_images/1443872392636366850/qsK9EhWa_200x200.jpg",
+    bio: "Learning and growing with @neogcamp| Documenting my coding journey | Interested in startups",
+    website: "peerlist.io/sharmaryan",
+    following: [
+      {
+        _id: uuid(),
+        firstName: "Ravi",
+        lastName: "Kumar",
+        username: "ravikumar0403",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1485232137649414147/6aYIKOhH_bigger.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Pruthviraj",
+        lastName: "",
+        username: "pruthviraj528",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1426564594533736450/2BSUHfRX_200x200.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Madhushree",
+        lastName: "Kunder",
+        username: "Madhushree_K5",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
+      },
+    ],
+    followers: [
+      {
+        _id: uuid(),
+        firstName: "Ritik",
+        lastName: "Patel",
+        username: "ritik_patel05",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1433801904916611074/wjfFL1Js_200x200.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Taran",
+        lastName: "",
+        username: "Tarandeep_s1ngh",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1511020219250376713/zFRXcl9k_400x400.jpg",
+      },
+    ],
+
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  // user 5
+  {
+    _id: uuid(),
+    firstName: "Saurabh",
+    lastName: "Chirde",
+    username: "SaurabhChirde",
+    password: "Chirde123",
+    avatarURL:
+      "https://pbs.twimg.com/profile_images/1440667366975676432/UhHolqnH_200x200.jpg",
+    bio: "Front-end @sosimplified | @neogcamp 2022 | Photographer, designer",
+    website: "bio.link/saurabhchirde",
+    following: [
+      {
+        _id: uuid(),
+        firstName: "Ashish",
+        lastName: "Katiyar",
+        username: "ashishk2404",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1484795367938195457/-cl54iIv_bigger.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Harshita",
+        lastName: "Daswani",
+        username: "harshi_daswani",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1422678462964240388/ViOygzhj_bigger.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Rohit",
+        lastName: "",
+        username: "G_Rohit_",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1459880878465712130/ervKR6yS_bigger.jpg",
+      },
+    ],
+    followers: [
+      {
+        _id: uuid(),
+        firstName: "Pruthviraj",
+        lastName: "",
+        username: "pruthviraj528",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1426564594533736450/2BSUHfRX_200x200.jpg",
+      },
+      {
+        _id: uuid(),
+        firstName: "Ravi",
+        lastName: "Kumar",
+        username: "ravikumar0403",
+        avatarURL:
+          "https://pbs.twimg.com/profile_images/1485232137649414147/6aYIKOhH_bigger.jpg",
+      },
+    ],
+
     createdAt: formatDate(),
     updatedAt: formatDate(),
   },

@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getIndividualUser } from "../../features/user/userSlice";
+import { getAllUser, getIndividualUser } from "../../features/user/userSlice";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
 import { ProfileModal, Card } from "..";
@@ -10,58 +10,72 @@ const Profile = () => {
   const dispatch = useDispatch();
   const { username } = useParams();
   const [profileEditFlag, setProfileEditFlag] = useState(false);
-  const { individualUser } = useSelector((store) => store.user);
-  const { posts, userPost } = useSelector((store) => store.post);
+  const { individualUser, follower } = useSelector((store) => store.user);
+  const { user } = useSelector((store) => store.auth);
 
-  const { avatarURL, bio, firstName, website, lastName, followers, following } =
-    individualUser;
+  const { posts } = useSelector((store) => store.post);
+  const { bio, firstName, website, lastName, following } = individualUser;
 
   useEffect(() => {
     dispatch(getIndividualUser(username));
     dispatch(getUserPost(username));
+    dispatch(getAllUser());
   }, []);
-
+  console.log("follower", follower);
   const editHandler = () => {
     setProfileEditFlag((flag) => !flag);
   };
+
   return (
     <>
       <div className="col-start-4 col-end-10 ">
         <section className="flex flex-col items-center">
           <img
-            src={avatarURL}
+            src={individualUser?.avatarURL}
             className="rounded-full  w-24 h-24 object-cover  my-5"
             alt="usersImage"
           />
           <span className="font-bold  text-lg">
             {firstName} {lastName}
           </span>
-          <span className="text-lg">@{individualUser.username}</span>
-          <button
-            onClick={editHandler}
-            className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75"
-          >
-            Edit Button
-          </button>
+          <span className="text-lg">@{individualUser?.username}</span>
+          {individualUser.username === user.username ? (
+            <button
+              onClick={editHandler}
+              className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75"
+            >
+              Edit Button
+            </button>
+          ) : (
+            <button className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75">
+              follow
+            </button>
+          )}
+
           <p className="text-center my-2">{bio}</p>
           <Link className="text-indigo-800" to="www.google.com">
             {website}
           </Link>
           <div className="bg-white flex justify-evenly p-5 w-1/2 my-2">
             <div className="flex flex-col  grow">
-              <span className="font-bold">{following}</span>
+              <span className="font-bold">{following?.length}</span>
               <span className="font-bold  text-medium">Following</span>
             </div>
             <div className="flex flex-col grow">
-              <span className="font-bold">{followers}</span>
-              <span className="font-bold  text-medium">Posts</span>
+              {posts?.find((post) => post.username === user.username) && (
+                <>
+                  <span className="font-bold">{posts?.length}</span>
+                  <span className="font-bold  text-medium">Posts</span>
+                </>
+              )}
             </div>
             <div className="flex flex-col ">
-              <span className="font-bold">{following}</span>
+              <span className="font-bold">{follower?.followers?.length}</span>
               <span className="font-bold  text-medium">Followers</span>
             </div>
           </div>
         </section>
+
         <section>
           {posts?.map((post) => {
             return (
