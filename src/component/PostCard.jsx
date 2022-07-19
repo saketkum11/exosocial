@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deletePost, dislikePost, likePost } from "../features/posts/postSlice";
+import { dislikePost, likePost } from "../features/posts/postSlice";
 import { toast } from "react-toastify";
 import { useState } from "react";
 import { EditPost } from "./EditPost";
@@ -10,36 +10,30 @@ import {
   removeBookmark,
 } from "../features/bookmark/bookmarkSlice";
 const PostCard = ({ post }) => {
-  const {
-    content,
-    profilename,
-    username,
-    _id,
-    dislikedBy,
-    likedBy,
-    likeCount,
-    avatarURL,
-    firstName,
-    lastName,
-    comments,
-    createdAt,
-  } = post;
+  const { content, username, createdAt, likes } = post;
 
   const dispatch = useDispatch();
   const { token, user } = useSelector((store) => store.auth);
   const { bookmarks } = useSelector((store) => store.bookmark);
   const { posts } = useSelector((store) => store.post);
+  const { allUser } = useSelector((store) => store.user);
   const [editFlag, setEditFlag] = useState(false);
   const [commentFlag, setCommentFlag] = useState(false);
-  const handleDeletePost = (postId, authToken) => {
-    dispatch(deletePost({ postId, authToken }));
-    toast.error("deleted post");
+
+  const dataBaseUser = allUser?.find(
+    (dbUser) => dbUser.username === post.username
+  );
+
+  const postData = posts.some(
+    (postData) => postData.username === user.username
+  );
+  console.log("from postData", postData);
+
+  const handleLikePost = (_id, token) => {
+    dispatch(likePost({ postId: _id, authToken: token }));
   };
-  const handleLikePost = (_id, authToken) => {
-    dispatch(likePost({ postId: _id, authToken }));
-  };
-  const handleDislikePost = (_id, authToken) => {
-    dispatch(dislikePost({ postId: _id, authToken }));
+  const handleDislikePost = (_id, token) => {
+    dispatch(dislikePost({ postId: _id, authToken: token }));
   };
   const handleBookmark = (_id, token) => {
     dispatch(addBookmark({ postId: _id, authToken: token }));
@@ -58,14 +52,14 @@ const PostCard = ({ post }) => {
               <div className="flex items-center justify-between  py-2">
                 <div className="flex items-center ">
                   <img
-                    src={avatarURL}
+                    src={dataBaseUser?.avatarURL}
                     className="h-10 w-10 rounded-full   object-cover bg-indigo-800 mr-2"
                   />
                   <span>
-                    {firstName}
+                    {dataBaseUser?.firstName}
 
-                    {lastName}
-                    <small>@{username}</small>
+                    {dataBaseUser?.lastName}
+                    <small>@{dataBaseUser?.username}</small>
                   </span>
                   <span>{moment(Date.parse(createdAt)).fromNow()}</span>
                 </div>
@@ -81,11 +75,11 @@ const PostCard = ({ post }) => {
               <p className=" py-5 text-left">{content}</p>
 
               <div className="flex justify-between py-2">
-                {post?.likes.likedBy.find(
+                {likes?.likedBy.find(
                   (liked) => liked.username === user.username
                 ) ? (
                   <button
-                    onClick={() => handleDislikePost(_id, token)}
+                    onClick={() => handleDislikePost(post._id, token)}
                     className="text-red-700"
                   >
                     <i className="fa-solid fa-heart ">
@@ -93,7 +87,7 @@ const PostCard = ({ post }) => {
                     </i>
                   </button>
                 ) : (
-                  <button onClick={() => handleLikePost(_id, token)}>
+                  <button onClick={() => handleLikePost(post._id, token)}>
                     <i className="fa-solid fa-heart ">
                       <span>{post?.likes.likeCount}</span>
                     </i>
@@ -104,19 +98,15 @@ const PostCard = ({ post }) => {
                   <i className="fa-solid fa-message"></i>
                 </button>
 
-                <button onClick={() => handleDeletePost(_id, token)}>
-                  <i className="fa-solid fa-trash"></i>
-                </button>
-
                 {bookmarks?.find((bookmark) => bookmark._id === post._id) ? (
                   <button
-                    onClick={() => handleRemoveBookmark(_id, token)}
+                    onClick={() => handleRemoveBookmark(post._id, token)}
                     className="text-indigo-500"
                   >
                     <i className="fa-solid fa-bookmark"></i>
                   </button>
                 ) : (
-                  <button onClick={() => handleBookmark(_id, token)}>
+                  <button onClick={() => handleBookmark(post._id, token)}>
                     <i className="fa-solid fa-bookmark"></i>
                   </button>
                 )}

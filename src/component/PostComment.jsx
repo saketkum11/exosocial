@@ -20,6 +20,7 @@ const PostComment = ({ post }) => {
 
   const handleAddComment = (_id, commentData, authToken) => {
     dispatch(addComment({ commentData, postId: _id, authToken }));
+    setNewComment({ ...newComment, text: "" });
   };
 
   const handleUpdateComment = (commentId, _id, authToken, commentData) => {
@@ -159,7 +160,7 @@ const PostComment = ({ post }) => {
       {!editCommentModal && (
         <div className="flex">
           <img
-            src="./assets/social.jpg"
+            src={user.avatarURL}
             className="h-10 w-10 rounded-full object-cover bg-indigo-800 mr-2"
             alt=""
           />
@@ -167,6 +168,7 @@ const PostComment = ({ post }) => {
             onChange={(e) =>
               setNewComment({ ...newComment, text: e.target.value })
             }
+            value={newComment.text}
             className="h-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white "
           ></textarea>
           <button

@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   follow,
+  getAllUser,
   getIndividualUser,
   unFollow,
 } from "../features/user/userSlice";
@@ -9,7 +10,7 @@ import {
 const Follow = () => {
   const dispatch = useDispatch();
   const { allUser, individualUser } = useSelector((store) => store.user);
-  const { token } = useSelector((store) => store.auth);
+  const { token, user } = useSelector((store) => store.auth);
 
   const handleFollow = (_id, token) => {
     dispatch(follow({ followUserId: _id, authToken: token }));
@@ -17,12 +18,17 @@ const Follow = () => {
   const handleUnFollow = (_id, token) => {
     dispatch(unFollow({ UnfollowId: _id, authToken: token }));
   };
-  const filterUser = allUser.filter(
-    (user) => user.username !== individualUser.username
+  const filterUser = allUser?.filter(
+    (userData) => userData.username !== individualUser.username
   );
   const handleFollowerUser = (username, token) => {
     dispatch(getIndividualUser(username, token));
   };
+
+  const followData = allUser?.find(
+    (singleuser) => singleuser.username === individualUser.username
+  );
+
   return (
     <>
       <section className=" justify-start col-start-10 col-end-12 ">
@@ -42,42 +48,22 @@ const Follow = () => {
                 <div className="flex grow items-center">
                   <img
                     src={avatarURL}
-                    className="rounded-full w-8 h-8 mr-3 object-cover "
+                    className="rounded-full w-8 h-8 mr-3 object-cover cursor-pointer "
                     alt=""
                   />
                   <div
                     onClick={() => {
                       handleFollowerUser(username, token);
                     }}
-                    className="flex flex-col "
+                    className="flex flex-col cursor-pointer "
                   >
-                    <span>
+                    <span className="">
                       {firstName} {lastName}
                     </span>
                     <small>@{username}</small>
+                    {followData && <button>Follow</button>}
                   </div>
                 </div>
-                {individualUser.following.find(
-                  (followingUser) => followingUser.username === username
-                ) ? (
-                  <button
-                    onClick={() => {
-                      handleUnFollow(_id, token);
-                    }}
-                    className="bg-red-600 text-white px-2 py-1 rounded-md"
-                  >
-                    UnFollow
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => {
-                      handleFollow(_id, token);
-                    }}
-                    className="bg-indigo-800 text-white px-2 py-1 rounded-md"
-                  >
-                    Follow
-                  </button>
-                )}
               </li>
             </ul>
           );
