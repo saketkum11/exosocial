@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { signInUser, signUpUser } from "../../features/auth/authSlice";
 
@@ -9,11 +9,11 @@ const Signup = () => {
   const [userCredential, setUserCredential] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    username: "",
     password: "",
   });
 
-  const { firstName, lastName, email, password } = userCredential;
+  const { firstName, lastName, username, password } = userCredential;
 
   const handleEvent = (e) => {
     setUserCredential({ ...userCredential, [e.target.name]: e.target.value });
@@ -21,7 +21,7 @@ const Signup = () => {
 
   const handleSignUp = () => {
     dispatch(signUpUser(userCredential));
-    dispatch(signInUser({ email, password }));
+    dispatch(signInUser({ username, password }));
     navigate("/home");
   };
 
@@ -67,14 +67,14 @@ const Signup = () => {
           </div>
           <div className="flex flex-col my-2">
             <label htmlFor="email" className="flex">
-              Email
+              Username
             </label>
             <input
               onChange={(e) => handleEvent(e)}
-              type="email"
-              name="email"
+              type="text"
+              name="username"
               required
-              value={email}
+              value={username}
               placeholder="eg.adam@gmail.com"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />

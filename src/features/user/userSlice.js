@@ -4,6 +4,7 @@ import axios from "axios";
 const initialState = {
   allUser: [],
   individualUser: {},
+  follower: {},
 };
 
 export const getAllUser = createAsyncThunk(
@@ -13,7 +14,7 @@ export const getAllUser = createAsyncThunk(
       const response = await axios.get(`/api/users`);
       return response.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error);
+      thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -50,6 +51,47 @@ export const editUserProfile = createAsyncThunk(
   }
 );
 
+export const follow = createAsyncThunk(
+  "user/follow",
+  async ({ followUserId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/users/follow/${followUserId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      rejectWithValue(error);
+    }
+  }
+);
+export const unFollow = createAsyncThunk(
+  "user/unFollow",
+  async ({ UnfollowId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/users/unfollow/${UnfollowId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      rejectWithValue(error);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
@@ -73,7 +115,20 @@ const userSlice = createSlice({
       .addCase(editUserProfile.fulfilled, (state, { payload }) => {
         state.individualUser = payload.user;
       })
-      .addCase(editUserProfile.rejected, (state) => {});
+      .addCase(editUserProfile.rejected, (state) => {})
+
+      .addCase(follow.pending, (state) => {})
+      .addCase(follow.fulfilled, (state, { payload }) => {
+        state.individualUser = payload.user;
+        state.follower = payload.followUser;
+      })
+      .addCase(follow.rejected, (state) => {})
+      .addCase(unFollow.pending, (state) => {})
+      .addCase(unFollow.fulfilled, (state, { payload }) => {
+        state.individualUser = payload.user;
+        state.follower = payload.followUser;
+      })
+      .addCase(unFollow.rejected, (state) => {});
   },
 });
 

@@ -18,3 +18,4 @@ export { Post } from "../component/Post";
 export { RequireAuth } from "../MyRoutes/RequireAuth";
 export { ProfileModal } from "../component/ProfileModal";
 export { EditPost } from "../component/EditPost";
+export { PostComment } from "../component/PostComment";

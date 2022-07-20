@@ -8,10 +8,6 @@ const Post = () => {
   const { token, user } = useSelector((store) => store.auth);
   const { avatarURL, username, firstName, lastName } = user;
   const [feed, setFeed] = useState({
-    avatarURL,
-    username,
-    firstName,
-    lastName,
     content: "",
   });
 
@@ -21,6 +17,7 @@ const Post = () => {
 
   const handleCreatePost = (postData, authToken) => {
     dispatch(createPost({ postData, authToken }));
+    setFeed({ ...feed, content: "" });
   };
 
   return (

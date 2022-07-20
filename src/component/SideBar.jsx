@@ -1,8 +1,10 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
   const { user } = useSelector((store) => store.auth);
+
   return (
     <>
       <aside className="col-start-2 col-end-4 ">
@@ -26,7 +28,7 @@ const SideBar = () => {
             </Link>
           </li>
           <li className="p-2 py-3 flex justify-start text-lg items-center">
-            <Link to={`/profile/${user?.username}`}>
+            <Link to={`/profile/${user?.username ?? "saket601"}`}>
               <i className="fa-solid fa-user  mr-3"></i>
               <span>Profile</span>
             </Link>

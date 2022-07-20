@@ -9,7 +9,6 @@ import { store } from "./app/store";
 
 // Call make Server
 makeServer();
-console.log(store.getState());
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>

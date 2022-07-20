@@ -11,7 +11,7 @@ import {
   Signin,
   Signup,
 } from "../Page";
-
+import Mockman from "mockman-js";
 const MyRoutes = () => {
   return (
     <>
@@ -28,6 +28,7 @@ const MyRoutes = () => {
         </Route>
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/mock" element={<Mockman />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

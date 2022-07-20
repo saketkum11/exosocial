@@ -10,7 +10,7 @@ export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
     const response = await axios.get("/api/posts");
     return response.data;
   } catch (error) {
-    return error;
+    console.error(error);
   }
 });
 
@@ -96,6 +96,145 @@ export const editPost = createAsyncThunk(
   }
 );
 
+export const addComment = createAsyncThunk(
+  "post/addComment",
+  async ({ postId, commentData, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/add/${postId}`,
+        {
+          commentData,
+        },
+        {
+          headers: { authorization: authToken },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const editComment = createAsyncThunk(
+  "post/editComment",
+  async (
+    { postId, commentId, authToken, commentData },
+    { rejectWithValue }
+  ) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/edit/${postId}/${commentId}`,
+        { commentData },
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const deleteComment = createAsyncThunk(
+  "post/deleteComment",
+  async ({ commentId, postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.delete(
+        `/api/comments/delete/${postId}/${commentId}`,
+        {
+          headers: { authorization: authToken },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      rejectWithValue(error);
+    }
+  }
+);
+export const upVoteComment = createAsyncThunk(
+  "post/upVoteComment",
+  async ({ commentId, postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/upvote/${postId}/${commentId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const downVoteComment = createAsyncThunk(
+  "post/downVoteComment",
+  async ({ commentId, postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/comments/downvote/${postId}/${commentId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
+export const likePost = createAsyncThunk(
+  "post/likePost",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/posts/like/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+export const dislikePost = createAsyncThunk(
+  "post/dislikePost",
+  async ({ postId, authToken }, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(
+        `/api/posts/dislike/${postId}`,
+        {},
+        {
+          headers: {
+            authorization: authToken,
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "post",
   initialState,
@@ -128,13 +267,62 @@ const postSlice = createSlice({
         state.posts = payload.posts;
       })
       .addCase(deletePost.rejected, (state) => {})
+
       // edit Post
       .addCase(editPost.pending, (state) => {})
       .addCase(editPost.fulfilled, (state, { payload }) => {
-        console.log("action of editpost", payload);
         state.posts = payload.posts;
       })
-      .addCase(editPost.rejected, (state) => {});
+      .addCase(editPost.rejected, (state) => {})
+
+      // add comment
+      .addCase(addComment.pending, (state) => {})
+      .addCase(addComment.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(addComment.rejected, (state) => {})
+
+      //delete comment
+      .addCase(deleteComment.pending, (state) => {})
+      .addCase(deleteComment.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(deleteComment.rejected, (state) => {})
+
+      //edit comment
+      .addCase(editComment.pending, (state) => {})
+      .addCase(editComment.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(editComment.rejected, (state) => {})
+
+      // upvote comment
+      .addCase(upVoteComment.pending, (state) => {})
+      .addCase(upVoteComment.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(upVoteComment.rejected, (state) => {})
+
+      // downvote comment
+      .addCase(downVoteComment.pending, (state) => {})
+      .addCase(downVoteComment.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(downVoteComment.rejected, (state) => {})
+
+      // like comment
+      .addCase(likePost.pending, (state) => {})
+      .addCase(likePost.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(likePost.rejected, (state) => {})
+
+      //dislike comment
+      .addCase(dislikePost.pending, (state) => {})
+      .addCase(dislikePost.fulfilled, (state, { payload }) => {
+        state.posts = payload.posts;
+      })
+      .addCase(dislikePost.rejected, (state) => {});
   },
 });
 

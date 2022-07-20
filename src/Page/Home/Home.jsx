@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Card } from "../../component/Card";
 import { Post } from "../../component/Post";
 import { getAllPost } from "../../features/posts/postSlice";
+import { sortPost } from "../../utils/filter";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -12,11 +13,13 @@ const Home = () => {
     dispatch(getAllPost());
   }, []);
 
+  const sortedPost = sortPost(posts);
+
   return (
     <>
       <div className="col-start-4 col-end-10">
         <Post />
-        {posts?.map((post) => {
+        {sortedPost?.map((post) => {
           return (
             <>
               <Card key={post._id} post={post} />
