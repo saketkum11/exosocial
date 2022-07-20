@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   follow,
-  getAllUser,
   getIndividualUser,
   unFollow,
 } from "../features/user/userSlice";
@@ -26,7 +25,7 @@ const Follow = () => {
   };
 
   const followData = allUser?.find(
-    (singleuser) => singleuser.username === individualUser.username
+    (singleuser) => singleuser.username !== user.username
   );
 
   return (
@@ -51,17 +50,31 @@ const Follow = () => {
                     className="rounded-full w-8 h-8 mr-3 object-cover cursor-pointer "
                     alt=""
                   />
-                  <div
-                    onClick={() => {
-                      handleFollowerUser(username, token);
-                    }}
-                    className="flex flex-col cursor-pointer "
-                  >
-                    <span className="">
+                  <div className="flex flex-col  ">
+                    <span
+                      className="cursor-pointer"
+                      onClick={() => {
+                        handleFollowerUser(username, token);
+                      }}
+                    >
                       {firstName} {lastName}
                     </span>
                     <small>@{username}</small>
-                    {followData && <button>Follow</button>}
+                    {followData ? (
+                      <button
+                        className="cursor-pointer bg-red-600  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        onClick={() => handleUnFollow(_id, token)}
+                      >
+                        UnFollow
+                      </button>
+                    ) : (
+                      <button
+                        className="cursor-pointer bg-indigo-800  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                        onClick={() => handleFollow(_id, token)}
+                      >
+                        Follow
+                      </button>
+                    )}
                   </div>
                 </div>
               </li>

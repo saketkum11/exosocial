@@ -8,7 +8,7 @@ const BookMark = () => {
   const { bookmarks } = useSelector((store) => store.bookmark);
   useEffect(() => {
     dispatch(getAllBookmark({ token }));
-  }, []);
+  }, [dispatch]);
   return (
     <>
       {bookmarks?.map((post) => {

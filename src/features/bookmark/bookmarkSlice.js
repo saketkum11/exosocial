@@ -12,7 +12,6 @@ export const getAllBookmark = createAsyncThunk(
       const response = await axios.get("/api/users/bookmark", {
         headers: { authorization: token },
       });
-      console.log("from the bookmark", response.data);
       return response.data;
     } catch (error) {
       console.error(error);

@@ -16,7 +16,6 @@ const Explore = () => {
   const sortedByRecent = filter(posts, sort);
   const sortedByDate = filter(sortedByRecent, sort);
   const sortedByTrending = filter(sortedByDate, sort);
-  console.log("from explore sortedBYdate", sortedByTrending);
 
   return (
     <>

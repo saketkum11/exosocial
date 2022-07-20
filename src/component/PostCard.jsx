@@ -27,7 +27,6 @@ const PostCard = ({ post }) => {
   const postData = posts.some(
     (postData) => postData.username === user.username
   );
-  console.log("from postData", postData);
 
   const handleLikePost = (_id, token) => {
     dispatch(likePost({ postId: _id, authToken: token }));

@@ -8,7 +8,6 @@ const filterSlice = createSlice({
   initialState,
   reducers: {
     filterAllPost: (state, { payload }) => {
-      console.log("from pyaload", payload);
       state.sort = payload;
     },
   },

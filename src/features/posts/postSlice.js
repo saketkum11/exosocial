@@ -313,8 +313,6 @@ const postSlice = createSlice({
       // like comment
       .addCase(likePost.pending, (state) => {})
       .addCase(likePost.fulfilled, (state, { payload }) => {
-        console.log("from like payload", payload);
-
         state.posts = payload.posts;
       })
       .addCase(likePost.rejected, (state) => {})
@@ -322,7 +320,6 @@ const postSlice = createSlice({
       //dislike comment
       .addCase(dislikePost.pending, (state) => {})
       .addCase(dislikePost.fulfilled, (state, { payload }) => {
-        console.log("from dislik payload", payload);
         state.posts = payload.posts;
       })
       .addCase(dislikePost.rejected, (state) => {});

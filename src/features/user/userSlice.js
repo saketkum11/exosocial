@@ -12,7 +12,6 @@ export const getAllUser = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const response = await axios.get(`/api/users`);
-      console.log("response from alluser", response.data);
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error);
@@ -66,9 +65,11 @@ export const follow = createAsyncThunk(
           },
         }
       );
+      console.log(" response from follow", response.data);
       return response.data;
     } catch (error) {
       console.error(error);
+      rejectWithValue(error);
     }
   }
 );
@@ -85,9 +86,11 @@ export const unFollow = createAsyncThunk(
           },
         }
       );
+      console.log(" response from unfollow", response.data);
       return response.data;
     } catch (error) {
       console.error(error);
+      rejectWithValue(error);
     }
   }
 );
@@ -119,14 +122,12 @@ const userSlice = createSlice({
 
       .addCase(follow.pending, (state) => {})
       .addCase(follow.fulfilled, (state, { payload }) => {
-        console.log("payload from  follow", payload);
         state.individualUser = payload.user;
         state.follower = payload.followUser;
       })
       .addCase(follow.rejected, (state) => {})
       .addCase(unFollow.pending, (state) => {})
       .addCase(unFollow.fulfilled, (state, { payload }) => {
-        console.log("payload from  follow", payload);
         state.individualUser = payload.user;
         state.follower = payload.followUser;
       })

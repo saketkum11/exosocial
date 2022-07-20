@@ -19,9 +19,7 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getIndividualUser(username));
     dispatch(getUserPost(username));
-    dispatch(getAllUser());
   }, []);
-  console.log("follower", follower);
   const editHandler = () => {
     setProfileEditFlag((flag) => !flag);
   };
