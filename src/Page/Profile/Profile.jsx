@@ -37,16 +37,16 @@ const Profile = () => {
             {firstName} {lastName}
           </span>
           <span className="text-lg">@{individualUser?.username}</span>
-          {individualUser.username === user.username ? (
+          {individualUser.username !== user.username ? (
+            <button className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75">
+              follow
+            </button>
+          ) : (
             <button
               onClick={editHandler}
               className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75"
             >
               Edit Button
-            </button>
-          ) : (
-            <button className="px-3 py-1 border-2 text-indigo-800 border-indigo-800 border-opacity-75">
-              follow
             </button>
           )}
 
@@ -60,7 +60,9 @@ const Profile = () => {
               <span className="font-bold  text-medium">Following</span>
             </div>
             <div className="flex flex-col grow">
-              {posts?.find((post) => post.username === user.username) && (
+              {posts?.find(
+                (post) => post.username === individualUser.username
+              ) && (
                 <>
                   <span className="font-bold">{posts?.length}</span>
                   <span className="font-bold  text-medium">Posts</span>
@@ -77,9 +79,11 @@ const Profile = () => {
         <section>
           {posts?.map((post) => {
             return (
-              <>
-                <Card post={post} />
-              </>
+              individualUser?.username === post?.username && (
+                <>
+                  <Card post={post} />
+                </>
+              )
             );
           })}
         </section>

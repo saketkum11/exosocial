@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   allUser: [],
   individualUser: {},
-  follower: [],
+  follower: {},
 };
 
 export const getAllUser = createAsyncThunk(
@@ -54,7 +54,6 @@ export const editUserProfile = createAsyncThunk(
 export const follow = createAsyncThunk(
   "user/follow",
   async ({ followUserId, authToken }, { rejectWithValue }) => {
-    console.log("follow id", followUserId);
     try {
       const response = await axios.post(
         `/api/users/follow/${followUserId}`,
@@ -65,7 +64,6 @@ export const follow = createAsyncThunk(
           },
         }
       );
-      console.log(" response from follow", response.data);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -86,7 +84,6 @@ export const unFollow = createAsyncThunk(
           },
         }
       );
-      console.log(" response from unfollow", response.data);
       return response.data;
     } catch (error) {
       console.error(error);
