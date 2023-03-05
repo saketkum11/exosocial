@@ -1,6 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { reset, logout } from "../features/auth/authSlice";
+import { useState } from "react";
+import { SideBar } from "./SideBar";
+import { Navigation } from "./Navigation";
 
 const Header = () => {
   const { token } = useSelector((store) => store.auth);
@@ -14,38 +17,34 @@ const Header = () => {
     navigate("/");
   };
 
+  const [navFlag, setNavFlag] = useState(false);
   return (
     <>
       <nav className="bg-white sticky z-10 top-0">
         <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex items-center justify-between h-16">
-            <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
-              <button
-                type="button"
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                aria-controls="mobile-menu"
-                aria-expanded="false"
-              >
-                <span className="sr-only">Open main menu</span>
-
-                <svg
-                  className="block h-6 w-6"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="2"
-                  stroke="currentColor"
-                  aria-hidden="true"
+            <div className=" inset-y-0 left-0 flex items-center sm:hidden">
+              {navFlag ? (
+                <button
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white "
+                  aria-controls="mobile-menu"
+                  aria-expanded="false"
+                  onClick={() => setNavFlag((flag) => !flag)}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                </svg>
-              </button>
+                  <i class="fa-sharp fa-solid fa-xmark"></i>
+                </button>
+              ) : (
+                <button
+                  className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white "
+                  aria-controls="mobile-menu"
+                  aria-expanded="false"
+                  onClick={() => setNavFlag((flag) => !flag)}
+                >
+                  <i class="fa-solid fa-bars"></i>
+                </button>
+              )}
             </div>
-            <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+            <div className="flex-1 flex items-center justify-center sm:items-center sm:justify-start">
               <div className="flex-shrink-0 flex items-center">
                 <Link to="/home">
                   <span className="text-indigo-800 text-2xl font-bold">
@@ -79,6 +78,11 @@ const Header = () => {
           </div>
         </div>
       </nav>
+      {navFlag && (
+        <>
+          <Navigation />
+        </>
+      )}
     </>
   );
 };

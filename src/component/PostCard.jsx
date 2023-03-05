@@ -44,7 +44,7 @@ const PostCard = ({ post }) => {
   };
   return (
     <>
-      <div className="col-start-4 col-end-10">
+      <div className="sm:col-span-2 col-span-1">
         <div className="relative flex flex-col flex-wrap">
           <section className="p-5 bg-white my-3 wt-full">
             <div className="flex flex-col ">

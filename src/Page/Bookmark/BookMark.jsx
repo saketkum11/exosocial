@@ -11,13 +11,15 @@ const BookMark = () => {
   }, [dispatch]);
   return (
     <>
-      {bookmarks?.map((post) => {
-        return (
-          <>
-            <Card post={post} key={post._id} />
-          </>
-        );
-      })}
+      <div className=" sm:col-span-3 md:col-span-2">
+        {bookmarks?.map((post) => {
+          return (
+            <>
+              <Card post={post} key={post._id} />
+            </>
+          );
+        })}
+      </div>
     </>
   );
 };

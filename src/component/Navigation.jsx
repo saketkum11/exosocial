@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-const SideBar = () => {
+const Navigation = () => {
   const { user } = useSelector((store) => store.auth);
 
   return (
     <>
-      <aside className="md:col-span-1 md:block hidden">
+      <aside className=" absolute top-20 left-5 sm:hidden">
         <ul className="flex flex-col bg-white rounded-md mr-2 px-8">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
             <Link to="/home">
@@ -38,4 +38,4 @@ const SideBar = () => {
     </>
   );
 };
-export { SideBar };
+export { Navigation };

@@ -31,6 +31,7 @@ export const signInUser = createAsyncThunk(
         username: username,
         password: password,
       });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error);
