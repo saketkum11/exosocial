@@ -22,10 +22,16 @@ const Post = () => {
 
   return (
     <>
-      <section className="bg-white  flex p-4">
-        <img src={user.avatarURL} className="rounded-full w-10 h-10  " alt="" />
+      <section className="bg-white  flex p-4 gap-2">
+        <img src={avatarURL} className="rounded-full w-10 h-10  " alt="" />
 
-        <div className="flex flex-col w-full ">
+        <form
+          className="flex flex-col w-full "
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleCreatePost(feed, token);
+          }}
+        >
           <textarea
             required
             value={feed.content}
@@ -35,25 +41,14 @@ const Post = () => {
           />
 
           <div className="flex justify-between ">
-            <div className="flex">
-              <button disabled className="mr-1">
-                <i className="fa-solid fa-image"></i>
-              </button>
-              <button disabled className="mr-1">
-                <i className="fa-solid fa-video"></i>
-              </button>
-              <button disabled className="mr-1">
-                <i className="fa-solid fa-face-smile"></i>
-              </button>
-            </div>
             <button
-              onClick={() => handleCreatePost(feed, token)}
+              type="submit"
               className="bg-indigo-800 text-white  py-2 px-5 mt-2 "
             >
               Post
             </button>
           </div>
-        </div>
+        </form>
       </section>
     </>
   );

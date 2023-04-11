@@ -49,7 +49,7 @@ const Follow = () => {
                   <div className=" px-5">
                     <div>
                       <Link
-                        className="cursor-pointer flex items-center justify-center text-sm "
+                        className="cursor-pointer flex items-center justify-center text-sm gap-2"
                         to={`/profile/${username ?? "saket601"}`}
                         onClick={() => {
                           handleFollowerUser(username, token);

@@ -40,7 +40,7 @@ const PostComment = ({ post }) => {
   };
   return (
     <>
-      {comments.map((comment) => {
+      {[...comments].map((comment) => {
         const { votes } = comment;
 
         return (
@@ -158,13 +158,20 @@ const PostComment = ({ post }) => {
         );
       })}
       {!editCommentModal && (
-        <div className="flex">
+        <form
+          className="flex"
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleAddComment(_id, newComment, token);
+          }}
+        >
           <img
             src={user.avatarURL}
             className="h-10 w-10 rounded-full object-cover bg-indigo-800 mr-2"
             alt=""
           />
           <textarea
+            required
             onChange={(e) =>
               setNewComment({ ...newComment, text: e.target.value })
             }
@@ -172,12 +179,12 @@ const PostComment = ({ post }) => {
             className="h-10 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white "
           ></textarea>
           <button
-            onClick={() => handleAddComment(_id, newComment, token)}
+            type="submit"
             className="bg-indigo-800  text-white px-3 py-2 flex text-sm rounded-md focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
           >
             comment
           </button>
-        </div>
+        </form>
       )}
     </>
   );

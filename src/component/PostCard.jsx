@@ -62,13 +62,12 @@ const PostCard = ({ post }) => {
                     src={avatarURL}
                     className="h-10 w-10 rounded-full   object-cover bg-indigo-800 mr-2"
                   />
-                  <span>
-                    {firstName}
-
-                    {lastName}
+                  <div className="flex gap-2 items-center">
+                    <span>{firstName}</span>
+                    <span>{lastName}</span>
                     <small>@{username}</small>
-                  </span>
-                  <span>{moment(Date.parse(createdAt)).fromNow()}</span>
+                    <span>{moment(Date.parse(createdAt)).fromNow()}</span>
+                  </div>
                 </div>
                 {user?.username === username && (
                   <button onClick={() => setEditFlag((flag) => !flag)}>
@@ -89,13 +88,13 @@ const PostCard = ({ post }) => {
                     onClick={() => handleDislikePost(post._id, token)}
                     className="text-red-700"
                   >
-                    <i className="fa-solid fa-heart ">
+                    <i className="fa-solid fa-heart px-2">
                       <span>{post?.likes.likeCount}</span>
                     </i>
                   </button>
                 ) : (
                   <button onClick={() => handleLikePost(post._id, token)}>
-                    <i className="fa-solid fa-heart ">
+                    <i className="fa-solid fa-heart px-2">
                       <span>{post?.likes.likeCount}</span>
                     </i>
                   </button>

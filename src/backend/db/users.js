@@ -129,13 +129,13 @@ export const users = [
 
   {
     _id: uuid(),
-    firstName: "Madhushree",
-    lastName: "Kunder",
-    username: "Madhushree_K5",
+    firstName: "Manisha",
+    lastName: "Pandey",
+    username: "ManishaG15",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
-    password: "madhusree123",
-    email: "madhusree123",
+      "https://pbs.twimg.com/profile_images/1467052770666573827/8tDPTKRG_200x200.jpg",
+    password: "manisha123",
+    email: "madhusree@gmail.com",
     following: [
       {
         _id: uuid(),
@@ -181,11 +181,11 @@ export const users = [
   // user 4
   {
     _id: uuid(),
-    firstName: "Pavan",
-    lastName: "Kumar",
-    username: "_kpavan",
+    firstName: "Ritik",
+    lastName: "Kapoor",
+    username: "rkap810",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1478270579220176903/_kAffu3W_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1629579647615926272/ScgBZefN_200x200.jpg",
     bio: "Learning and growing with @neogcamp| Documenting my coding journey | Interested in startups",
     email: "pavan@gmail.com",
     website: "pavan.netlify.com",
@@ -240,12 +240,11 @@ export const users = [
   // user 5
   {
     _id: uuid(),
-    firstName: "Ritik",
-    lastName: "Patel",
-    username: "ritik_patel05",
-    password: "ritik123",
+    firstName: "Vaibhav",
+    lastName: "Matere 🇮🇳👨‍💻",
+    username: "vaibhav_matere",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1433801904916611074/wjfFL1Js_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1563416219125878784/HitG_KUE_200x200.jpg",
     bio: "Front-end @sosimplified | @neogcamp 2022 | Photographer, designer",
     website: "ritik.netlify.com",
     following: [
@@ -298,12 +297,12 @@ export const users = [
   },
   {
     _id: uuid(),
-    firstName: "Atul",
-    lastName: "Pant",
-    username: "AtulPant2704",
-    email: "atul@gmail.com",
+    firstName: "Library",
+    lastName: "Mindset",
+    username: "librarymindset",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1445429216737050625/B4IJkZxo_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1455901591198781454/HBWPME8c_200x200.jpg",
+    email: "atul@gmail.com",
     bio: "Front-end @sosimplified | @neogcamp 2022 | Photographer, designer",
     website: "bio.link/saurabhchirde",
     following: [

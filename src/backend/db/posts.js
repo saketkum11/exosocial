@@ -11,7 +11,7 @@ export const posts = [
   {
     _id: uuid(),
     firstName: "Taran",
-    lastName: "",
+    lastName: " ",
     username: "Tarandeep_s1ngh",
     avatarURL:
       "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
@@ -25,11 +25,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Madhushree",
-        lastName: "Kunder",
-        username: "Madhushree_K5",
+        firstName: "Manisha",
+        lastName: "Pandey",
+        username: "ManishaG15",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1467052770666573827/8tDPTKRG_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -38,11 +38,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        firstName: "Pavan",
-        lastName: "Kumar",
-        username: "_kpavan",
+        firstName: "Ritik",
+        lastName: "Kapoor",
+        username: "rkap810",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1478270579220176903/_kAffu3W_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1629579647615926272/ScgBZefN_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -57,7 +57,7 @@ export const posts = [
 
   {
     _id: uuid(),
-    firstName: "Manish",
+    firstName: "Manisha",
     lastName: "Pandey",
     username: "ManishaG15",
     avatarURL:
@@ -76,7 +76,7 @@ export const posts = [
         lastName: "",
         username: "Tarandeep_s1ngh",
         avatarURL:
-          "	https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -85,11 +85,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        firstName: "Madhushree",
-        lastName: "Kunder",
-        username: "Madhushree_K5",
+        firstName: "Ritik",
+        lastName: "Kapoor",
+        username: "rkap810",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1629579647615926272/ScgBZefN_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -119,11 +119,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Ritik",
-        lastName: "Patel",
-        username: "ritik_patel05",
+        firstName: "Vaibhav",
+        lastName: "Matere 🇮🇳👨‍💻",
+        username: "vaibhav_matere",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1433801904916611074/wjfFL1Js_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1563416219125878784/HitG_KUE_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -152,11 +152,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Atul",
-        lastName: "Pant",
-        username: "AtulPant2704",
+        firstName: "Ritik",
+        lastName: "Kapoor",
+        username: "rkap810",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1445429216737050625/B4IJkZxo_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1629579647615926272/ScgBZefN_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -165,11 +165,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        firstName: "Madhushree",
-        lastName: "Kunder",
-        username: "Madhushree_K5",
+        firstName: "Library",
+        lastName: "Mindset",
+        username: "librarymindset",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1455901591198781454/HBWPME8c_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -183,12 +183,13 @@ export const posts = [
   // post atul
   {
     _id: uuid(),
-    firstName: "library",
+    firstName: "Library",
     lastName: "Mindset",
     username: "librarymindset",
     avatarURL:
       "https://pbs.twimg.com/profile_images/1455901591198781454/HBWPME8c_200x200.jpg",
-    content: "I read books📚 | Subscribe to our weekly newsletter:",
+    content:
+      "Doctors won't make you healthy.Nutritionists won't make you slim.Teachers won't make you smart.Gurus won't make you calm.Mentors won't make you rich.Trainers won't make you fit.",
     likes: {
       likeCount: 5,
       likedBy: [],
@@ -197,11 +198,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Ritik",
-        lastName: "Patel",
-        username: "ritik_patel05",
+        firstName: "Taran",
+        lastName: "",
+        username: "Tarandeep_s1ngh",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1433801904916611074/wjfFL1Js_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -216,7 +217,7 @@ export const posts = [
   {
     _id: uuid(),
     firstName: "Saket",
-    lastName: "kumar",
+    lastName: "Kumar",
     username: "saket601",
     avatarURL:
       "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
@@ -243,11 +244,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        firstName: "Atul",
-        lastName: "Pant",
-        username: "AtulPant2704",
+        firstName: "Taran",
+        lastName: "",
+        username: "Tarandeep_s1ngh",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1445429216737050625/B4IJkZxo_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -275,7 +276,7 @@ export const posts = [
   {
     _id: uuid(),
     firstName: "Saket",
-    lastName: "kumar",
+    lastName: "Kumar",
     username: "saket601",
     avatarURL:
       "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
@@ -303,7 +304,7 @@ export const posts = [
       {
         _id: uuid(),
         firstName: "Saket",
-        lastName: "kumar",
+        lastName: "Kumar",
         username: "saket601",
         avatarURL:
           "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
