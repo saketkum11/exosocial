@@ -7,13 +7,14 @@ import { formatDate } from "../utils/authUtils";
  * */
 
 export const posts = [
+  // post taran
   {
     _id: uuid(),
     firstName: "Taran",
     lastName: "",
     username: "Tarandeep_s1ngh",
     avatarURL:
-      "	https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
     content:
       " Attitude is a choice. Happiness is a choice. Optimism is a choice. Kindness is a choice. Giving is a choice. Respect is a choice. Whatever choice you make makes you. Choose wisely.",
     likes: {
@@ -52,13 +53,15 @@ export const posts = [
     createdAt: "03/01/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post Manshi
+
   {
     _id: uuid(),
-    firstName: "Ritik",
-    lastName: "Patel",
-    username: "ritik_patel05",
+    firstName: "Manish",
+    lastName: "Pandey",
+    username: "ManishaG15",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1433801904916611074/wjfFL1Js_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1467052770666573827/8tDPTKRG_200x200.jpg",
     content:
       "Don't let the expectations and opinions of other people affect your decisions. It's your life, not theirs. Do what matters most to you; do what makes you feel alive and happy. Don't let the expectations and ideas of others limit who you are. If you let others tell you who you are, you are living their reality — not yours. There is more to life than pleasing people. There is much more to life than following others' prescribed path. There is so much more to life than what you experience right now. You need to decide who you are for yourself. Become a whole being. Adventure.",
     likes: {
@@ -97,13 +100,15 @@ export const posts = [
     createdAt: "02/25/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post Ritik Kapoor
+
   {
     _id: uuid(),
-    firstName: "Madhushree",
-    lastName: "Kunder",
-    username: "Madhushree_K5",
+    firstName: "Ritik",
+    lastName: "Kapoor",
+    username: "rkap810",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1279662538125262848/l4H6Xz-L_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1629579647615926272/ScgBZefN_200x200.jpg",
     content:
       "Even if you cannot change all the people around you, you can change the people you choose to be around. Life is too short to waste your time on people who don’t respect, appreciate, and value you. Spend your life with people who make you smile, laugh, and feel loved.",
     likes: {
@@ -129,13 +134,14 @@ export const posts = [
     createdAt: "01/01/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post Vaibhav
   {
     _id: uuid(),
-    firstName: "Pavan",
-    lastName: "Kumar",
-    username: "_kpavan",
+    firstName: "Vaibhav",
+    lastName: "Matere 🇮🇳👨‍💻",
+    username: "vaibhav_matere",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1478270579220176903/_kAffu3W_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1563416219125878784/HitG_KUE_200x200.jpg",
     content:
       "Be grateful for what you already have while you pursue your goals.If you aren’t grateful for what you already have, what makes you think you would be happy with more.",
     likes: {
@@ -174,15 +180,15 @@ export const posts = [
     createdAt: "05/01/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post atul
   {
     _id: uuid(),
-    firstName: "Atul",
-    lastName: "Pant",
-    username: "AtulPant2704",
+    firstName: "library",
+    lastName: "Mindset",
+    username: "librarymindset",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1445429216737050625/B4IJkZxo_200x200.jpg",
-    content:
-      "It's worth making time to find the things that really stir your soul. That’s what makes you really feel alive. You have to say ‘no’ to other things you’re used to, and do it with all your heart.",
+      "https://pbs.twimg.com/profile_images/1455901591198781454/HBWPME8c_200x200.jpg",
+    content: "I read books📚 | Subscribe to our weekly newsletter:",
     likes: {
       likeCount: 5,
       likedBy: [],
@@ -206,6 +212,7 @@ export const posts = [
     createdAt: "02/01/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post saket
   {
     _id: uuid(),
     firstName: "Saket",
@@ -264,6 +271,7 @@ export const posts = [
     createdAt: "01/01/2022".toString(),
     updatedAt: formatDate(),
   },
+  // post saket
   {
     _id: uuid(),
     firstName: "Saket",

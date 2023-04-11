@@ -10,7 +10,15 @@ import {
   removeBookmark,
 } from "../features/bookmark/bookmarkSlice";
 const PostCard = ({ post }) => {
-  const { content, username, createdAt, likes } = post;
+  const {
+    content,
+    username,
+    createdAt,
+    likes,
+    avatarURL,
+    firstName,
+    lastName,
+  } = post;
 
   const dispatch = useDispatch();
   const { token, user } = useSelector((store) => store.auth);
@@ -51,14 +59,14 @@ const PostCard = ({ post }) => {
               <div className="flex items-center justify-between  py-2">
                 <div className="flex items-center ">
                   <img
-                    src={dataBaseUser?.avatarURL}
+                    src={avatarURL}
                     className="h-10 w-10 rounded-full   object-cover bg-indigo-800 mr-2"
                   />
                   <span>
-                    {dataBaseUser?.firstName}
+                    {firstName}
 
-                    {dataBaseUser?.lastName}
-                    <small>@{dataBaseUser?.username}</small>
+                    {lastName}
+                    <small>@{username}</small>
                   </span>
                   <span>{moment(Date.parse(createdAt)).fromNow()}</span>
                 </div>

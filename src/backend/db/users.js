@@ -16,11 +16,11 @@ export const users = [
     following: [
       {
         _id: uuid(),
-        firstName: "Pavan",
-        lastName: "Kumar",
-        username: "_kpavan",
+        firstName: "Vaibhav",
+        lastName: "Matere 🇮🇳👨‍💻",
+        username: "vaibhav_matere",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1478270579220176903/_kAffu3W_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1563416219125878784/HitG_KUE_200x200.jpg",
       },
       {
         _id: uuid(),

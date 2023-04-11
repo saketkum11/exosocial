@@ -13,14 +13,8 @@ const Signin = () => {
 
   const { username, password } = formData;
 
-  const defaultUser = {
-    username: "saket601",
-    password: "saket123",
-  };
-
-  const handleGuest = () => {
-    dispatch(signInUser(defaultUser));
-    navigate("/home");
+  const testGuest = ({ username, password }) => {
+    setFormData({ ...formData, username: username, password: password });
   };
 
   const handleEvent = (e) => {
@@ -51,6 +45,7 @@ const Signin = () => {
                 UserName
               </label>
               <input
+                autoComplete="on"
                 onChange={(e) => handleEvent(e)}
                 type="text"
                 name="username"
@@ -65,6 +60,7 @@ const Signin = () => {
                 Password
               </label>
               <input
+                autoComplete="on"
                 onChange={(e) => handleEvent(e)}
                 type="password"
                 required
@@ -83,7 +79,9 @@ const Signin = () => {
           </form>
           <div>
             <button
-              onClick={() => handleGuest()}
+              onClick={() =>
+                testGuest({ username: "Tarandeep_s1ngh", password: "taran123" })
+              }
               className="w-full p-1 flex justify-center rounded-md border-gray-300  border-2 text-gray-400 text-lg items-center my-5"
             >
               Login as Guest

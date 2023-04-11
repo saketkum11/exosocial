@@ -8,6 +8,7 @@ const initialState = {
 export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
   try {
     const response = await axios.get("/api/posts");
+    console.log("allpost", response);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -250,6 +251,7 @@ const postSlice = createSlice({
       // get user post
       .addCase(getUserPost.pending, (state) => {})
       .addCase(getUserPost.fulfilled, (state, { payload }) => {
+        console.log(payload);
         state.posts = payload.posts;
       })
       .addCase(getUserPost.rejected, (state) => {})

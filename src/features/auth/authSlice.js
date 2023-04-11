@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || {},
   token: localStorage.getItem("token") || null,
@@ -11,10 +11,10 @@ export const signUpUser = createAsyncThunk(
   async ({ username, password, firstName, lastName }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/signup", {
-        username: username,
-        password: password,
-        firstname: firstName,
-        lastname: lastName,
+        username,
+        password,
+        firstName,
+        lastName,
       });
       return response.data;
     } catch (error) {
@@ -28,10 +28,9 @@ export const signInUser = createAsyncThunk(
   async ({ username, password }, thunkAPI) => {
     try {
       const response = await axios.post("/api/auth/login", {
-        username: username,
-        password: password,
+        username,
+        password,
       });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error);
@@ -55,6 +54,7 @@ const authSlice = createSlice({
 
   extraReducers: (builder) => {
     builder
+      // signup
       .addCase(signUpUser.pending, (state) => {})
       .addCase(signUpUser.fulfilled, (state, action) => {
         state.user = action.payload.createdUser;
@@ -63,6 +63,7 @@ const authSlice = createSlice({
         localStorage.setItem("token", state.token);
       })
       .addCase(signUpUser.rejected, (state) => {})
+      // login
       .addCase(signInUser.pending, (state) => {})
       .addCase(signInUser.fulfilled, (state, action) => {
         state.user = action.payload.foundUser;

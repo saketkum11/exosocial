@@ -21,7 +21,6 @@ const Signup = () => {
 
   const handleSignUp = () => {
     dispatch(signUpUser(userCredential));
-    dispatch(signInUser({ username, password }));
     navigate("/home");
   };
 
@@ -42,6 +41,7 @@ const Signup = () => {
               FirstName
             </label>
             <input
+              autoComplete="on"
               onChange={(e) => handleEvent(e)}
               type="text"
               name="firstName"
@@ -56,6 +56,7 @@ const Signup = () => {
               LastName
             </label>
             <input
+              autoComplete="on"
               onChange={(e) => handleEvent(e)}
               type="text"
               name="lastName"
@@ -70,12 +71,13 @@ const Signup = () => {
               Username
             </label>
             <input
+              autoComplete="on"
               onChange={(e) => handleEvent(e)}
               type="text"
               name="username"
               required
               value={username}
-              placeholder="eg.adam@gmail.com"
+              placeholder="eg.adam12"
               className=" border-indigo-800 border-2 p-2 rounded-md border-opacity-50"
             />
           </div>
@@ -84,6 +86,7 @@ const Signup = () => {
               Password
             </label>
             <input
+              autoComplete="on"
               onChange={(e) => handleEvent(e)}
               type="password"
               required
