@@ -7,11 +7,11 @@ const ProfileModal = ({ setProfileEditFlag }) => {
   const { user, token } = useSelector((store) => store.auth);
   const { firstName, lastName, username, bio, website } = user;
   const [updateProfile, setUpdateProfile] = useState({
-    firstName,
-    lastName,
-    username,
-    bio,
-    website,
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    bio: bio,
+    website: website,
   });
 
   const submitProfileForm = (userData, authToken) => {

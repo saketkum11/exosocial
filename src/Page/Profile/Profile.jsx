@@ -24,6 +24,8 @@ const Profile = () => {
     setProfileEditFlag((flag) => !flag);
   };
 
+  console.log(individualUser, "username", username);
+
   return (
     <>
       <div className=" sm:col-span-3 md:col-span-2">

@@ -24,6 +24,7 @@ export const getIndividualUser = createAsyncThunk(
   async (username, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/users/${username}`);
+      console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);

@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || {},
-  token: localStorage.getItem("token") || null,
+  token: localStorage.getItem("token") || " ",
 };
 
+console.log("initialstate", initialState);
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
   async ({ username, password, firstName, lastName }, thunkAPI) => {
@@ -66,6 +66,7 @@ const authSlice = createSlice({
       // login
       .addCase(signInUser.pending, (state) => {})
       .addCase(signInUser.fulfilled, (state, action) => {
+        console.log(action);
         state.user = action.payload.foundUser;
         state.token = action.payload.encodedToken;
         localStorage.setItem("token", state.token);
