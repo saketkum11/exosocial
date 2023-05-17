@@ -10,11 +10,11 @@ export const posts = [
   // post taran
   {
     _id: uuid(),
-    firstName: "Taran",
-    lastName: " ",
-    username: "Tarandeep_s1ngh",
+    firstName: "Omkar",
+    lastName: " Deshpande",
+    username: "i_am_onkar",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
     content:
       " Attitude is a choice. Happiness is a choice. Optimism is a choice. Kindness is a choice. Giving is a choice. Respect is a choice. Whatever choice you make makes you. Choose wisely.",
     likes: {
@@ -72,11 +72,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Taran",
-        lastName: "",
-        username: "Tarandeep_s1ngh",
+        firstName: "Omkar",
+        lastName: " Deshpande",
+        username: "i_am_onkar",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -198,11 +198,11 @@ export const posts = [
     comments: [
       {
         _id: uuid(),
-        firstName: "Taran",
-        lastName: "",
-        username: "Tarandeep_s1ngh",
+        firstName: "Omkar",
+        lastName: " Deshpande",
+        username: "i_am_onkar",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -218,9 +218,9 @@ export const posts = [
     _id: uuid(),
     firstName: "Saket",
     lastName: "Kumar",
-    username: "saket601",
+    username: "saketkum11",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1651849331639451648/7T3kgKty_200x200.jpg",
     content:
       "Is your reading and research supplementing your actions or substituting for them? Research is useful until it becomes a form of procrastination.",
     likes: {
@@ -233,9 +233,9 @@ export const posts = [
         _id: uuid(),
         firstName: "Saket",
         lastName: "kumar",
-        username: "saket601",
+        username: "saketkum11",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1651849331639451648/7T3kgKty_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -244,11 +244,11 @@ export const posts = [
       },
       {
         _id: uuid(),
-        firstName: "Taran",
-        lastName: "",
-        username: "Tarandeep_s1ngh",
+        firstName: "Omkar",
+        lastName: " Deshpande",
+        username: "i_am_onkar",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],
@@ -277,9 +277,9 @@ export const posts = [
     _id: uuid(),
     firstName: "Saket",
     lastName: "Kumar",
-    username: "saket601",
+    username: "saketkum11",
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1651849331639451648/7T3kgKty_200x200.jpg",
     content:
       "The person who is brave enough to bet on something or someone—as long as they avoid irreversible mistakes like running out of cash or going to jail—is in a position to win.",
     likes: {
@@ -307,7 +307,7 @@ export const posts = [
         lastName: "Kumar",
         username: "saket601",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
+          "https://pbs.twimg.com/profile_images/1651849331639451648/7T3kgKty_200x200.jpg",
         text: "Its dope",
         votes: {
           upvotedBy: [],

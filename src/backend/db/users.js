@@ -50,11 +50,11 @@ export const users = [
       },
       {
         _id: uuid(),
-        firstName: "Taran",
-        lastName: "",
-        username: "Tarandeep_s1ngh",
+        firstName: "Omkar",
+        lastName: " Deshpande",
+        username: "i_am_onkar",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1511020219250376713/zFRXcl9k_400x400.jpg",
+          "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
       },
     ],
     avatarURL:
@@ -68,13 +68,13 @@ export const users = [
 
   {
     _id: uuid(),
-    firstName: "Taran",
-    lastName: "singh",
-    username: "Tarandeep_s1ngh",
+    firstName: "Omkar",
+    lastName: "Deshpande",
+    username: "i_am_onkar",
     avatarURL:
-      "	https://pbs.twimg.com/profile_images/1474058881626099716/xW_TLk6h_200x200.jpg",
-    password: "taran123",
-    email: "taran@gmail.com",
+      "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
+    password: "omkar123",
+    email: "omkar@gmail.com",
     following: [
       {
         _id: uuid(),
@@ -226,11 +226,11 @@ export const users = [
       },
       {
         _id: uuid(),
-        firstName: "Taran",
-        lastName: "",
-        username: "Tarandeep_s1ngh",
+        firstName: "Omkar",
+        lastName: " Deshpande",
+        username: "i_am_onkar",
         avatarURL:
-          "https://pbs.twimg.com/profile_images/1511020219250376713/zFRXcl9k_400x400.jpg",
+          "https://pbs.twimg.com/profile_images/1480028730965643273/jQVdkKTC_200x200.jpg",
       },
     ],
 

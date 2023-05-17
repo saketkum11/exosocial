@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { reset, logout } from "../features/auth/authSlice";
 import { useState } from "react";
@@ -46,11 +46,11 @@ const Header = () => {
             </div>
             <div className="flex-1 flex items-center justify-center sm:items-center sm:justify-start">
               <div className="flex-shrink-0 flex items-center">
-                <Link to="/home">
+                <NavLink to="/">
                   <span className="text-indigo-800 text-2xl font-bold">
                     ExoSocial
                   </span>
-                </Link>
+                </NavLink>
               </div>
             </div>
             <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

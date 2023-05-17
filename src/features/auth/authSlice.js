@@ -5,7 +5,6 @@ const initialState = {
   token: localStorage.getItem("token") || " ",
 };
 
-console.log("initialstate", initialState);
 export const signUpUser = createAsyncThunk(
   "auth/signUpUser",
   async ({ username, password, firstName, lastName }, thunkAPI) => {
@@ -16,6 +15,7 @@ export const signUpUser = createAsyncThunk(
         firstName,
         lastName,
       });
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error);
@@ -31,6 +31,7 @@ export const signInUser = createAsyncThunk(
         username,
         password,
       });
+      localStorage.setItem("user", JSON.stringify(response.data));
       return response.data;
     } catch (error) {
       thunkAPI.rejectWithValue(error);

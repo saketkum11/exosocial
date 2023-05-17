@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { getAllUser, getIndividualUser } from "../../features/user/userSlice";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { ProfileModal, Card } from "..";
+import { ProfileModal, Card, Follow } from "..";
 import { getUserPost } from "../../features/posts/postSlice";
 
 const Profile = () => {
@@ -19,19 +19,18 @@ const Profile = () => {
   useEffect(() => {
     dispatch(getIndividualUser(username));
     dispatch(getUserPost(username));
-  }, []);
+  }, [dispatch, username]);
+
   const editHandler = () => {
     setProfileEditFlag((flag) => !flag);
   };
 
-  console.log(individualUser, "username", username);
-
   return (
     <>
-      <div className=" sm:col-span-3 md:col-span-2">
+      <div className="sm:col-span-2 ">
         <section className="flex flex-col items-center">
           <img
-            src={individualUser?.avatarURL}
+            src={individualUser?.avatarURL ?? "/assets/chris.jpg"}
             className="rounded-full  w-24 h-24 object-cover  my-5"
             alt="usersImage"
           />
@@ -62,9 +61,7 @@ const Profile = () => {
               <span className="font-bold  text-medium">Following</span>
             </div>
             <div className="flex flex-col grow">
-              {posts?.find(
-                (post) => post.username === individualUser.username
-              ) && (
+              {posts?.find((post) => post.username === username) && (
                 <>
                   <span className="font-bold">{posts?.length}</span>
                   <span className="font-bold  text-medium">Posts</span>
@@ -81,7 +78,7 @@ const Profile = () => {
         <section>
           {posts?.map((post) => {
             return (
-              individualUser?.username === post?.username && (
+              username === post?.username && (
                 <>
                   <Card post={post} />
                 </>
@@ -90,6 +87,7 @@ const Profile = () => {
           })}
         </section>
       </div>
+
       {profileEditFlag && (
         <ProfileModal setProfileEditFlag={setProfileEditFlag} />
       )}

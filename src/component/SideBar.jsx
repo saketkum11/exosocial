@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const SideBar = () => {
   const { user } = useSelector((store) => store.auth);
@@ -7,31 +7,31 @@ const SideBar = () => {
 
   return (
     <>
-      <aside className="md:col-span-1 md:block hidden">
-        <ul className="flex flex-col bg-white rounded-md mr-2 px-8">
+      <aside className="md:col-span-1 md:block hidden ">
+        <ul className="flex flex-col bg-white rounded-md mr-2 px-8 sm:sticky sm:top-20">
           <li className="p-2 py-3 flex items-center justify-start text-lg  grow ">
-            <Link to="/home">
+            <NavLink to="/">
               <i className="fa-solid fa-house-user mr-3 "></i>
               <span>Home</span>
-            </Link>
+            </NavLink>
           </li>
           <li className="p-2 py-3 flex items-center text-lg  justify-start">
-            <Link to="/explore">
+            <NavLink to="/explore">
               <i className="fa-solid fa-rocket mr-3"></i>
               <span>Explore</span>
-            </Link>
+            </NavLink>
           </li>
           <li className="p-2 py-3 flex items-center text-lg  justify-start">
-            <Link to="/saved">
+            <NavLink to="/saved">
               <i className="fa-solid fa-bookmark mr-3"></i>
               <span>Bookmark</span>
-            </Link>
+            </NavLink>
           </li>
           <li className="p-2 py-3 flex justify-start text-lg items-center">
-            <Link to={`/profile/${user?.username}`}>
+            <NavLink to={`/profile/${user?.username}`}>
               <i className="fa-solid fa-user  mr-3"></i>
               <span>Profile</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </aside>

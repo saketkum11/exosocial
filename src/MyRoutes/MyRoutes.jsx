@@ -12,6 +12,7 @@ import {
   Signup,
 } from "../Page";
 import Mockman from "mockman-js";
+import { MainLayout } from "../Layout/MainLayout";
 const MyRoutes = () => {
   return (
     <>
@@ -19,7 +20,7 @@ const MyRoutes = () => {
         <Route path="/" element={<Landing />} />
         <Route element={<HomeOutlet />}>
           <Route element={<RequireAuth />}>
-            <Route path="/home" element={<Home />} />
+            <Route index element={<Home />} />
             <Route path="/explore" element={<Explore />} />
             <Route path="/saved" element={<BookMark />} />
             <Route path="/profile" element={<Profile />} />

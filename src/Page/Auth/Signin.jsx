@@ -80,7 +80,7 @@ const Signin = () => {
           <div>
             <button
               onClick={() =>
-                testGuest({ username: "Tarandeep_s1ngh", password: "taran123" })
+                testGuest({ username: "i_am_onkar", password: "omkar123" })
               }
               className="w-full p-1 flex justify-center rounded-md border-gray-300  border-2 text-gray-400 text-lg items-center my-5"
             >

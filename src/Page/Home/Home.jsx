@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <>
-      <div className=" sm:col-span-3 md:col-span-2">
+      <div className=" sm:col-span-3 md:col-span-2 z-0">
         <Post />
         {[...sortedPost].map((post) => {
           return (
