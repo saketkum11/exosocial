@@ -11,7 +11,7 @@ export const users = [
     _id: uuid(),
     firstName: "Saket",
     lastName: "kumar",
-    username: "saket601",
+    username: "saketkum11",
     password: "saket123",
     following: [
       {
@@ -58,7 +58,7 @@ export const users = [
       },
     ],
     avatarURL:
-      "https://pbs.twimg.com/profile_images/1459765251486851078/FdFG6z1X_200x200.jpg",
+      "https://pbs.twimg.com/profile_images/1651849331639451648/7T3kgKty_200x200.jpg",
     bio: "Believe It.I am not what I think I am , I am not What  you think I am , I am What I think you think I am. by Prof. Cooley",
     website: "saketkum.netlify.app",
     createdAt: formatDate(),

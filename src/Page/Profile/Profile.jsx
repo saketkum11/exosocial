@@ -3,8 +3,9 @@ import { useEffect } from "react";
 import { getAllUser, getIndividualUser } from "../../features/user/userSlice";
 import { useParams, Link } from "react-router-dom";
 import { useState } from "react";
-import { ProfileModal, Card, Follow } from "..";
+import { ProfileModal, Card } from "..";
 import { getUserPost } from "../../features/posts/postSlice";
+import { useTitle } from "../../utils/useTitle";
 
 const Profile = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,8 @@ const Profile = () => {
 
   const { posts } = useSelector((store) => store.post);
   const { bio, firstName, website, lastName, following } = individualUser;
+
+  useTitle(`Profile`);
 
   useEffect(() => {
     dispatch(getIndividualUser(username));

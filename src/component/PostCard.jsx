@@ -9,6 +9,7 @@ import {
   addBookmark,
   removeBookmark,
 } from "../features/bookmark/bookmarkSlice";
+import { NavLink } from "react-router-dom";
 const PostCard = ({ post }) => {
   const {
     content,
@@ -63,8 +64,14 @@ const PostCard = ({ post }) => {
                     className="h-10 w-10 rounded-full   object-cover bg-indigo-800 mr-2"
                   />
                   <div className="flex gap-2 items-center">
-                    <span>{firstName}</span>
-                    <span>{lastName}</span>
+                    <NavLink
+                      to={`/profile/${username}`}
+                      className="flex gap-2 hover:text-indigo-400 cursor-pointer hover:underline"
+                    >
+                      <span>{firstName}</span>
+                      <span>{lastName}</span>
+                    </NavLink>
+
                     <small>@{username}</small>
                     <span>{moment(Date.parse(createdAt)).fromNow()}</span>
                   </div>

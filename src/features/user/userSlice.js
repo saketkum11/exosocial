@@ -4,7 +4,7 @@ import axios from "axios";
 const initialState = {
   allUser: [],
   individualUser: {},
-  follower: {},
+  follower: [],
 };
 
 export const getAllUser = createAsyncThunk(
@@ -24,7 +24,7 @@ export const getIndividualUser = createAsyncThunk(
   async (username, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/users/${username}`);
-      console.log(response);
+
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -92,6 +92,7 @@ export const unFollow = createAsyncThunk(
     }
   }
 );
+console.log(initialState);
 
 const userSlice = createSlice({
   name: "user",
@@ -117,16 +118,16 @@ const userSlice = createSlice({
         state.individualUser = payload.user;
       })
       .addCase(editUserProfile.rejected, (state) => {})
-
+      // follow user
       .addCase(follow.pending, (state) => {})
       .addCase(follow.fulfilled, (state, { payload }) => {
-        state.individualUser = payload.user;
-        state.follower = payload.followUser;
+        console.log(payload, state);
+        state.follower = payload.user.following;
       })
       .addCase(follow.rejected, (state) => {})
+      // unfollow user
       .addCase(unFollow.pending, (state) => {})
       .addCase(unFollow.fulfilled, (state, { payload }) => {
-        state.individualUser = payload.user;
         state.follower = payload.followUser;
       })
       .addCase(unFollow.rejected, (state) => {});
