@@ -4,11 +4,12 @@ import { Card } from "../../component/Card";
 import { Post } from "../../component/Post";
 import { getAllPost } from "../../features/posts/postSlice";
 import { sortPost } from "../../utils/filter";
+import { useTitle } from "../../utils/useTitle";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { posts } = useSelector((store) => store.post);
-
+  useTitle("home");
   useEffect(() => {
     dispatch(getAllPost());
   }, []);

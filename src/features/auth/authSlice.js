@@ -3,6 +3,7 @@ import axios from "axios";
 const initialState = {
   user: JSON.parse(localStorage.getItem("user")) || {},
   token: localStorage.getItem("token") || " ",
+  loading: false,
 };
 
 export const signUpUser = createAsyncThunk(

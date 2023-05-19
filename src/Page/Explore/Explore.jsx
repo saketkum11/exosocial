@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { getAllPost } from "../../features/posts/postSlice";
 import { filter } from "../../utils/filterSort";
+import { useTitle } from "../../utils/useTitle";
+import { Loading } from "../../component/Loading";
 
 const Explore = () => {
-  const { posts } = useSelector((store) => store.post);
+  const { posts, loading } = useSelector((store) => store.post);
   const { sort } = useSelector((store) => store.filter);
   const dispatch = useDispatch();
+  useTitle("explore");
   useEffect(() => {
     dispatch(getAllPost());
   }, []);
@@ -24,9 +27,13 @@ const Explore = () => {
           <span>Explore</span>
         </div>
         <ExploreTab />
-        {[...sortedByDate]?.map((post) => {
-          return <Card post={post} key={post._id} />;
-        })}
+        {loading ? (
+          <Loading />
+        ) : (
+          [...sortedByDate]?.map((post) => {
+            return <Card post={post} key={post._id} />;
+          })
+        )}
       </div>
     </>
   );

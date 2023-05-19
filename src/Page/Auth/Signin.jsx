@@ -23,7 +23,7 @@ const Signin = () => {
 
   const handelSignIn = () => {
     dispatch(signInUser(formData));
-    navigate("/home");
+    navigate("/");
   };
 
   return (

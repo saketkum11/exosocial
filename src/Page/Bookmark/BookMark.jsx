@@ -2,13 +2,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBookmark } from "../../features/bookmark/bookmarkSlice";
 import { Card } from "../../component/Card";
+import { useTitle } from "../../utils/useTitle";
 const BookMark = () => {
   const dispatch = useDispatch();
   const { token } = useSelector((store) => store.auth);
   const { bookmarks } = useSelector((store) => store.bookmark);
+  useTitle("bookmark");
   useEffect(() => {
     dispatch(getAllBookmark({ token }));
-  }, [dispatch]);
+  }, [dispatch, token]);
   return (
     <>
       {bookmarks.length === 0 ? (

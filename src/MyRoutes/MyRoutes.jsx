@@ -4,7 +4,6 @@ import {
   Explore,
   Home,
   HomeOutlet,
-  Landing,
   NotFound,
   Profile,
   RequireAuth,
@@ -12,21 +11,22 @@ import {
   Signup,
 } from "../Page";
 import Mockman from "mockman-js";
-import { MainLayout } from "../Layout/MainLayout";
 const MyRoutes = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route element={<HomeOutlet />}>
+        <Route path="/" element={<HomeOutlet />}>
+          <Route path="explore" element={<Explore />} />
           <Route element={<RequireAuth />}>
             <Route index element={<Home />} />
-            <Route path="/explore" element={<Explore />} />
-            <Route path="/saved" element={<BookMark />} />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/profile/:username" element={<Profile />} />
+            <Route path="saved" element={<BookMark />} />
           </Route>
         </Route>
+        <Route element={<RequireAuth />}>
+          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:username" element={<Profile />} />
+        </Route>
+
         <Route path="/login" element={<Signin />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/mock" element={<Mockman />} />

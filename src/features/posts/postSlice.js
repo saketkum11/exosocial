@@ -3,12 +3,12 @@ import axios from "axios";
 
 const initialState = {
   posts: [],
+  loading: false,
 };
 
 export const getAllPost = createAsyncThunk("post/getAllPost", async () => {
   try {
     const response = await axios.get("/api/posts");
-    console.log("allpost", response);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -242,16 +242,18 @@ const postSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getAllPost.pending, (state) => {})
+      .addCase(getAllPost.pending, (state) => {
+        state.loading = true;
+      })
       .addCase(getAllPost.fulfilled, (state, action) => {
         state.posts = action.payload.posts;
+        state.loading = false;
       })
       .addCase(getAllPost.rejected, (state) => {})
 
       // get user post
       .addCase(getUserPost.pending, (state) => {})
       .addCase(getUserPost.fulfilled, (state, { payload }) => {
-        console.log(payload);
         state.posts = payload.posts;
       })
       .addCase(getUserPost.rejected, (state) => {})

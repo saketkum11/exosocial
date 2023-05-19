@@ -3,7 +3,6 @@ import { Link, NavLink } from "react-router-dom";
 
 const SideBar = () => {
   const { user } = useSelector((store) => store.auth);
-  console.log("user", user);
 
   return (
     <>

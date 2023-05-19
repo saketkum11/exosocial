@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, current } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const initialState = {
@@ -24,7 +24,7 @@ export const getIndividualUser = createAsyncThunk(
   async (username, { rejectWithValue }) => {
     try {
       const response = await axios.get(`/api/users/${username}`);
-
+      console.log(response.data);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -65,6 +65,7 @@ export const follow = createAsyncThunk(
           },
         }
       );
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error(error);
@@ -92,45 +93,70 @@ export const unFollow = createAsyncThunk(
     }
   }
 );
-console.log(initialState);
+
+const updateFollowing = (users, followingUser) => {
+  const IsUser = users?.find(
+    (user) => user?.username === followingUser?.username
+  );
+
+  if (IsUser) {
+    users = [...users]?.map((eachUser) =>
+      eachUser.username === IsUser.username ? followingUser : eachUser
+    );
+  }
+  return users;
+};
+
+const updateFollowedUser = (users, followedUser) => {
+  const IsUser = users.find((user) => user._id === followedUser._id);
+
+  if (IsUser) {
+    users = [...users]?.map((eachUser) =>
+      eachUser._id === IsUser._id ? followedUser : eachUser
+    );
+  }
+  console.log(IsUser);
+  return users;
+};
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(getAllUser.pending, (state) => {})
-      .addCase(getAllUser.fulfilled, (state, { payload }) => {
-        state.allUser = payload.users;
-      })
-      .addCase(getAllUser.rejected, (state) => {})
+  extraReducers: {
+    [getAllUser.pending]: (state) => {},
+    [getAllUser.fulfilled]: (state, { payload }) => {
+      state.allUser = payload.users;
+    },
+    [getAllUser.rejected]: (state) => {},
 
-      .addCase(getIndividualUser.pending, (state) => {})
-      .addCase(getIndividualUser.fulfilled, (state, { payload }) => {
-        state.individualUser = payload.user;
-      })
-      .addCase(getIndividualUser.rejected, (state) => {})
+    // individual user
+    [getIndividualUser.pending]: (state) => {},
+    [getIndividualUser.fulfilled]: (state, { payload }) => {
+      state.individualUser = payload.user;
+    },
 
-      // for edit edit user details
-      .addCase(editUserProfile.pending, (state) => {})
-      .addCase(editUserProfile.fulfilled, (state, { payload }) => {
-        state.individualUser = payload.user;
-      })
-      .addCase(editUserProfile.rejected, (state) => {})
-      // follow user
-      .addCase(follow.pending, (state) => {})
-      .addCase(follow.fulfilled, (state, { payload }) => {
-        console.log(payload, state);
-        state.follower = payload.user.following;
-      })
-      .addCase(follow.rejected, (state) => {})
-      // unfollow user
-      .addCase(unFollow.pending, (state) => {})
-      .addCase(unFollow.fulfilled, (state, { payload }) => {
-        state.follower = payload.followUser;
-      })
-      .addCase(unFollow.rejected, (state) => {});
+    // editUserProfile
+    [editUserProfile.pending]: (state) => {},
+    [editUserProfile.fulfilled]: (state, { payload }) => {
+      state.individualUser = payload.user;
+    },
+
+    //follow
+
+    [follow.pending]: (state) => {},
+    [follow.fulfilled]: (state, action) => {
+      const { user, followUser } = action.payload;
+      state.allUser = updateFollowing(current(state).allUser, user);
+      state.allUser = updateFollowedUser(current(state).allUser, followUser);
+      console.log("userSlice", state, action);
+    },
+    // unfollow
+    [unFollow.pending]: (state) => {},
+    [unFollow.fulfilled]: (state, action) => {
+      console.log("userSlice", state, action);
+      state.follower = action.payload;
+    },
   },
 });
 

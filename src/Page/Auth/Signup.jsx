@@ -21,7 +21,7 @@ const Signup = () => {
 
   const handleSignUp = () => {
     dispatch(signUpUser(userCredential));
-    navigate("/home");
+    navigate("/");
   };
 
   return (

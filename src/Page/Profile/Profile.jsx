@@ -15,9 +15,10 @@ const Profile = () => {
   const { user } = useSelector((store) => store.auth);
 
   const { posts } = useSelector((store) => store.post);
-  const { bio, firstName, website, lastName, following } = individualUser;
+  const { bio, firstName, website, lastName, following, followers } =
+    individualUser;
 
-  useTitle(`Profile`);
+  useTitle("profile");
 
   useEffect(() => {
     dispatch(getIndividualUser(username));
@@ -30,7 +31,7 @@ const Profile = () => {
 
   return (
     <>
-      <div className="sm:col-span-2 ">
+      <div className="sm:col-span-2 h-min-screen">
         <section className="flex flex-col items-center">
           <img
             src={individualUser?.avatarURL ?? "/assets/chris.jpg"}
@@ -72,13 +73,13 @@ const Profile = () => {
               )}
             </div>
             <div className="flex flex-col ">
-              <span className="font-bold">{follower?.followers?.length}</span>
+              <span className="font-bold">{followers?.length}</span>
               <span className="font-bold  text-medium">Followers</span>
             </div>
           </div>
         </section>
 
-        <section>
+        <section className="max-w-2xl m-auto">
           {posts?.map((post) => {
             return (
               username === post?.username && (
